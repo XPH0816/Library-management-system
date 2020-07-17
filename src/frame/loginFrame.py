@@ -48,8 +48,27 @@ def loginFrame():
     login_frame = ttk.Frame(root, relief = GROOVE)
     login_frame.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.55)
 
-    
+    Name_label = ttk.Label(login_frame, text = "Name :",font=("Cascadia Code" , 12))
+    Username = ttk.Entry(login_frame)
+    Name_label.place(relx=0.14, rely=0.125)
+    Username.place(relx=0.36, rely=0.140, relwidth=0.55)
 
+    Password_label = ttk.Label(login_frame,text = "Password :",font=("Cascadia Code" , 11))
+    Password = ttk.Entry(login_frame,show="*")
+
+    button_image = Image.open("src\picture\lock.png")
+    button_image = button_image.resize((16, 16), Image.ANTIALIAS)
+    button_image = ImageTk.PhotoImage(button_image)
+    Show_Button = ttk.Button(login_frame, image = button_image)
+
+    Password_label.place(relx=0.03, rely=0.375)
+    Password.place(relx=0.36, rely=0.385, relwidth=0.43)
+    Show_Button.place(relx=0.81, rely=0.375, relwidth=0.1)
+
+    button_frame = ttk.Frame(login_frame, relief = GROOVE)
+    button_frame.place(relx=0.1,rely=0.53, relwidth=0.8, relheight=0.2)
+    button_login = ttk.Button(button_frame, text = "Login")
+    button_login.place(relx=0.55, rely=0.25, relwidth=0.4)
     
 
     root.mainloop()
