@@ -46,7 +46,7 @@ def loginFrame():
     title2.pack()
 
     login_frame = ttk.Frame(root, relief = GROOVE)
-    login_frame.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.55)
+    login_frame.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.35)
 
     Name_label = ttk.Label(login_frame, text = "Name :",font=("Cascadia Code" , 12))
     Username = ttk.Entry(login_frame)
@@ -66,9 +66,11 @@ def loginFrame():
     Show_Button.place(relx=0.81, rely=0.375, relwidth=0.1)
 
     button_frame = ttk.Frame(login_frame, relief = GROOVE)
-    button_frame.place(relx=0.1,rely=0.53, relwidth=0.8, relheight=0.2)
+    button_frame.place(relx=0.1,rely=0.63, relwidth=0.8, relheight=0.25)
     button_login = ttk.Button(button_frame, text = "Login")
+    button_clear = ttk.Button(button_frame, text = "Clear")
     button_login.place(relx=0.55, rely=0.25, relwidth=0.4)
+    button_clear.place(relx=0.05, rely=0.25, relwidth=0.4)
     
 
     root.mainloop()
