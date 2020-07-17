@@ -31,6 +31,11 @@ def loginFrame():
     x1 = int(x1)
     y1 = int(y1)
 
+    #Setting Style for ttk
+    style = ttk.Style()
+    style.configure("BW.TLabel", foreground="black", background="DeepSkyBlue4")
+    
+
     background_image = Image.open("src\picture\Mac.jpeg")
     background_image = background_image.resize((x1, y1), Image.ANTIALIAS)
     background_image = ImageTk.PhotoImage(background_image)
@@ -40,13 +45,13 @@ def loginFrame():
 
     frame_top = ttk.Frame(root)
     frame_top.place(relx = 0.05, rely = 0.05, relwidth = 0.9, relheight = 0.15)
-    title = ttk.Label(frame_top, text="Library Management System", padding = "2 5 2 0", font=("Cascadia Code SemiBold", 14))
+    title = ttk.Label(frame_top, text="Library Management System", padding = "2 5 2 0", font=("Cascadia Code SemiBold", 14),style = "BW.TLabel")
     title2 = ttk.Label(frame_top, text="Login to access your account", padding = "0 10 0 0", font=("Cascadia Code", 13))
     title.pack()
     title2.pack()
 
     login_frame = ttk.Frame(root, relief = GROOVE)
-    login_frame.place(relx=0.05, rely=0.25, relwidth=0.9, relheight=0.35)
+    login_frame.place(relx=0.05, rely=0.3, relwidth=0.9, relheight=0.35)
 
     Name_label = ttk.Label(login_frame, text = "Name :",font=("Cascadia Code" , 12))
     Username = ttk.Entry(login_frame)
