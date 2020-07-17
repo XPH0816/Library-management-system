@@ -33,7 +33,8 @@ def loginFrame():
 
     #Setting Style for ttk
     style = ttk.Style()
-    style.configure("BW.TLabel", foreground="black", background="DeepSkyBlue4")
+    style.configure("BW.TLabel", foreground="black", background="DarkOrchid1")
+    style.configure("BL.Label", foreground="black", background="DarkOrchid2")
     
 
     background_image = Image.open("src\picture\Mac.jpeg")
@@ -43,10 +44,10 @@ def loginFrame():
     background_label.pack()
     background_label.create_image(0, 0, anchor=NW, image=background_image)
 
-    frame_top = ttk.Frame(root)
+    frame_top = ttk.Frame(root,style = "BW.TLabel")
     frame_top.place(relx = 0.05, rely = 0.05, relwidth = 0.9, relheight = 0.15)
-    title = ttk.Label(frame_top, text="Library Management System", padding = "2 5 2 0", font=("Cascadia Code SemiBold", 14),style = "BW.TLabel")
-    title2 = ttk.Label(frame_top, text="Login to access your account", padding = "0 10 0 0", font=("Cascadia Code", 13))
+    title = ttk.Label(frame_top, text="Library Management System", padding = "2 5 2 10", font=("Cascadia Code SemiBold", 14),style = "BW.TLabel")
+    title2 = ttk.Label(frame_top, text="Login to access your account", padding = "0 0 0 0", font=("Cascadia Code", 13),style = "BL.Label")
     title.pack()
     title2.pack()
 
@@ -55,7 +56,7 @@ def loginFrame():
 
     Name_label = ttk.Label(login_frame, text = "Name :",font=("Cascadia Code" , 12))
     Username = ttk.Entry(login_frame)
-    Name_label.place(relx=0.14, rely=0.125)
+    Name_label.place(relx=0.145, rely=0.125)
     Username.place(relx=0.36, rely=0.140, relwidth=0.55)
 
     Password_label = ttk.Label(login_frame,text = "Password :",font=("Cascadia Code" , 11))
