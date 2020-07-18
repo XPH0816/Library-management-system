@@ -28,9 +28,12 @@ class LoginFrame:
         root.geometry("%dx%d+%d+%d" % (x1, y1, x2, y2))
         root.resizable(False, False)
 
-        #easy for configure within attribute
+        #Easy for configure within attribute
         x1 = int(x1)
         y1 = int(y1)
+
+        #Setting Radio Button Variable
+        var = IntVar()
 
         #Setting Style for ttk
         style = ttk.Style()
@@ -72,6 +75,14 @@ class LoginFrame:
         Password.place(relx=0.36, rely=0.385, relwidth=0.43)
         Show_Button.place(relx=0.81, rely=0.375, relwidth=0.1)
 
+        type_Frame = ttk.Frame(login_frame, relief=GROOVE)
+        type_Frame.place(relx=0.1, rely=0.57, relwidth=0.8, relheight=0.1)
+        readerRadioButton = Radiobutton(type_Frame, text = "Reader", variable = var, value = 1, font=("Cascadia Code", 9))
+        librarianRadioButton = Radiobutton(type_Frame, text = "Librarian", variable = var, value = 2, font=("Cascadia Code", 9))
+        readerRadioButton.place(relx=0.58, rely=0.15, relheight=0.6)
+        librarianRadioButton.place(relx=0.08, rely=0.15, relheight=0.6)
+
+
         button_frame = ttk.Frame(login_frame, relief=GROOVE)
         button_frame.place(relx=0.1, rely=0.73, relwidth=0.8, relheight=0.2)
         button_login = ttk.Button(button_frame, text="Login")
@@ -80,3 +91,6 @@ class LoginFrame:
         button_clear.place(relx=0.05, rely=0.25, relwidth=0.4)
 
         root.mainloop()
+
+frame = LoginFrame()
+frame.loginFrame()
