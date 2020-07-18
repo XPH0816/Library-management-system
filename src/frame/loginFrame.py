@@ -92,6 +92,3 @@ class LoginFrame:
         button_clear.place(relx=0.05, rely=0.25, relwidth=0.4)
 
         root.mainloop()
-
-frame = LoginFrame()
-frame.loginFrame()
