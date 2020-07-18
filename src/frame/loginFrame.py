@@ -33,8 +33,8 @@ def loginFrame():
 
     #Setting Style for ttk
     style = ttk.Style()
-    style.configure("BW.TLabel", foreground="black", background="DarkOrchid1")
-    style.configure("BL.Label", foreground="black", background="DarkOrchid2")
+    style.configure("BW.TLabel", foreground="black", background="SpringGreen2")
+    style.configure("BL.Label", foreground="black", background="spring green")
     
 
     background_image = Image.open("src\picture\Mac.jpeg")
@@ -55,12 +55,12 @@ def loginFrame():
     login_frame.place(relx=0.05, rely=0.3, relwidth=0.9, relheight=0.35)
 
     Name_label = ttk.Label(login_frame, text = "Name :",font=("Cascadia Code" , 12))
-    Username = ttk.Entry(login_frame)
-    Name_label.place(relx=0.145, rely=0.125)
+    Username = ttk.Entry(login_frame, font=("Cascadia Code", 10))
+    Name_label.place(relx=0.03, rely=0.125)
     Username.place(relx=0.36, rely=0.140, relwidth=0.55)
 
     Password_label = ttk.Label(login_frame,text = "Password :",font=("Cascadia Code" , 11))
-    Password = ttk.Entry(login_frame,show="*")
+    Password = ttk.Entry(login_frame, font=("Cascadia Code", 10), show="*")
 
     button_image = Image.open("src\picture\lock.png")
     button_image = button_image.resize((16, 16), Image.ANTIALIAS)
