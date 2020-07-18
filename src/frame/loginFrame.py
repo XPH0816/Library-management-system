@@ -37,8 +37,8 @@ class LoginFrame:
 
         #Setting Style for ttk
         style = ttk.Style()
-        style.configure("BW.TLabel", foreground="black", background="SpringGreen2")
-        style.configure("BL.Label", foreground="black", background="spring green")
+        style.configure("BW.TLabel", foreground="black", background="MediumPurple1")
+        style.configure("BL.Label", foreground="black", background="MediumPurple2")
 
         background_image = Image.open("src\picture\Mac.jpeg")
         background_image = background_image.resize((x1, y1), Image.ANTIALIAS)
