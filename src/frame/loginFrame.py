@@ -79,6 +79,7 @@ class LoginFrame:
         type_Frame.place(relx=0.1, rely=0.57, relwidth=0.8, relheight=0.1)
         readerRadioButton = Radiobutton(type_Frame, text = "Reader", variable = var, value = 1, font=("Cascadia Code", 9))
         librarianRadioButton = Radiobutton(type_Frame, text = "Librarian", variable = var, value = 2, font=("Cascadia Code", 9))
+        librarianRadioButton.select()
         readerRadioButton.place(relx=0.58, rely=0.15, relheight=0.6)
         librarianRadioButton.place(relx=0.08, rely=0.15, relheight=0.6)
 
