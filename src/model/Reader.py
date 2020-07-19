@@ -46,28 +46,28 @@ class Reader:
 
         result = 1
 
-        if idReader == null:
+        if idReader == None:
             temp = 0
         else:
             temp = idReader.hashCode()
         
         result = constants.prime * result + temp
 
-        if nameReader == null:
+        if nameReader == None:
             temp1 = 0
         else:
             temp1 = nameReader.hashCode()
 
         result = constants.prime * result + temp1
 
-        if sex == null:
+        if sex == None:
             temp2 = 0
         else:
             temp2 = sex.hashCode()
 
         result = constants.prime * result + temp2
 
-        if level == null:
+        if level == None:
             temp3 = 0
         else:
             temp3 = level.hashCode()
@@ -79,28 +79,28 @@ class Reader:
     def equals(self, Reader):
         if (self == Reader):
             return True
-        if (Reader == null):
+        if (Reader == None):
             return False
         if (self.__class__ != Reader.__class__):
             return False
         other = Reader()
-        if (idReader == null):
-            if(other.idReader != null):
+        if (idReader == None):
+            if(other.idReader != None):
                 return False
         elif (not(idReader.equals(other.idReader))):
             return False
-        if (nameReader == null):
-            if(other.nameReader != null):
+        if (nameReader == None):
+            if(other.nameReader != None):
                 return False
         elif (not(nameReader.equals(other.nameReader))):
             return False
-        if (sex == null):
-            if(other.sex != null):
+        if (sex == None):
+            if(other.sex != None):
                 return False
         elif (not(sex.equals(other.sex))):
             return False
-        if (level == null):
-            if(other.level != null):
+        if (level == None):
+            if(other.level != None):
                 return False
         elif (not(level.equals(other.level))):
             return False

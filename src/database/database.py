@@ -2,6 +2,7 @@ import traceback
 import mysql.connector
 
 class DatabaseTools:
+    conn = None
     def getConn(self):
         try:
             mydb = mysql.connector.connect(

@@ -22,7 +22,7 @@ class Librarian:
         Constants = namedtuple('Constants',['prime'])
         constants = Constants(31)
 
-        if nameUser == null :
+        if nameUser == None :
             temp = 0
         else :
             temp = nameUser.hashCode()
@@ -34,13 +34,13 @@ class Librarian:
     def equals(self, Librarian):
         if (self == Librarian):
             return True
-        if (Librarian == null):
+        if (Librarian == None):
             return False
         if (self.__class__ != Librarian.__class__):
             return False
         other = Librarian()
-        if (nameUser == null):
-            if(other.nameUser != null):
+        if (nameUser == None):
+            if(other.nameUser != None):
                 return False
         elif (not(nameUser.equals(other.nameUser))):
             return False
