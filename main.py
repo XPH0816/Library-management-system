@@ -1,3 +1,4 @@
-import src.frame.MainFrame
+from src.frame.MainFrame import *
+from sqlTools.LibrarianTools import *
     
-src.frame.MainFrame.main()
+main()
