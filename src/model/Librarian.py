@@ -28,7 +28,7 @@ class Librarian:
             temp = nameUser.hashCode()
 
         result = 1
-        result = constants.prime + result + temp
+        result = constants.prime * result + temp
         return result
 
     def equals(self, Librarian):
