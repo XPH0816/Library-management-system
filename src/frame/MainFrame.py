@@ -1,6 +1,6 @@
 import traceback
-import loginFrame
-from loginFrame import *
+import src.frame.loginFrame
+from src.frame.loginFrame import *
 
 def main():
 
