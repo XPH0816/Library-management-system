@@ -84,12 +84,27 @@ class Reader:
         if (self.__class__ != Reader.__class__):
             return False
         other = Reader()
-        if (nameUser == null):
-            if(other.nameUser != null):
+        if (idReader == null):
+            if(other.idReader != null):
                 return False
-        elif (not(nameUser.equals(other.nameUser))):
+        elif (not(idReader.equals(other.idReader))):
+            return False
+        if (nameReader == null):
+            if(other.nameReader != null):
+                return False
+        elif (not(nameReader.equals(other.nameReader))):
+            return False
+        if (sex == null):
+            if(other.sex != null):
+                return False
+        elif (not(sex.equals(other.sex))):
+            return False
+        if (level == null):
+            if(other.level != null):
+                return False
+        elif (not(level.equals(other.level))):
             return False
         return True
 
     def toString(self):
-        return "Reader [nameUser=" + nameUser + ", password=" + password + "]"
+        return "Reader [idReader=" + idReader + ", nameReader=" + nameReader + ", type=" + level + ", sex=" + sex+ ", password=" + password + "]"
