@@ -1,6 +1,6 @@
 import traceback
 import mysql.connector
-from ..database import database
+from ..database.database import *
 
 
 class LibrarianTools:
@@ -8,12 +8,16 @@ class LibrarianTools:
         db = DatabaseTools()
         conn = db.getConn()
         try:
-            sql = "select nameUser,password from librarian where nameUser= + %s +  and password= + %s "
-            answer = (nameUser,password)
+            sql = "select nameUser,password from librarian where nameUser= %s and password= %s "
+            answer = (str(nameUser),str(password))
+
             mycursor = conn.cursor()
 
-            result = mycursor.execute(sql,answer)
-            if(result.fetchone()):
+            mycursor.execute(sql,answer)
+
+            result = mycursor.fetchone()
+
+            if(result != None):
                 return True
             mycursor.close()
         except Exception as e:

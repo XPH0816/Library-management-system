@@ -2,7 +2,6 @@ import traceback
 import mysql.connector
 
 class DatabaseTools:
-    conn = None
     def getConn(self):
         try:
             mydb = mysql.connector.connect(
@@ -11,5 +10,6 @@ class DatabaseTools:
                 password="",
                 database="library"
             )
+            return mydb
         except Exception as e:
             traceback.print_exc()
