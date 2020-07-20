@@ -1,5 +1,6 @@
 from src.frame.MainFrame import *
 from src.sqlTools.LibrarianTools import *
+from src.model.Reader import *
     
 main()
 

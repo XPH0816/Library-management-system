@@ -76,35 +76,38 @@ class Reader:
         
         return result
 
-    def equals(self, Reader):
-        if (self == Reader):
+    def equals(self, reader):
+        if (self == str(reader)):
             return True
-        if (Reader == None):
+        if (str(reader) == None):
             return False
-        if (self.__class__ != Reader.__class__):
+        if (__class__ != Reader):
             return False
         other = Reader()
-        if (idReader == None):
+        if (self.idReader == None):
             if(other.idReader != None):
                 return False
-        elif (not(idReader.equals(other.idReader))):
+        elif (not(self.idReader == other.idReader)):
             return False
-        if (nameReader == None):
+        if (self.nameReader == None):
             if(other.nameReader != None):
                 return False
-        elif (not(nameReader.equals(other.nameReader))):
+        elif (not(self.nameReader ==other.nameReader )):
             return False
-        if (sex == None):
+        if (self.sex == None):
             if(other.sex != None):
                 return False
-        elif (not(sex.equals(other.sex))):
+        elif (not(self.sex == other.sex )):
             return False
-        if (level == None):
+        if (self.level == None):
             if(other.level != None):
                 return False
-        elif (not(level.equals(other.level))):
+        elif (not(self.level == other.level)):
             return False
         return True
 
+    def list_return_reader(self):
+        return (self.idReader,self.nameReader,self.level,self.sex,self.password)
+
     def toString(self):
-        return "Reader [idReader=" + idReader + ", nameReader=" + nameReader + ", type=" + level + ", sex=" + sex+ ", password=" + password + "]"
+        return "Reader [idReader=" + self.idReader + ", nameReader=" + self.nameReader + ", type=" + self.level + ", sex=" + self.sex+ ", password=" + self.password + "]"

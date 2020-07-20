@@ -20,6 +20,7 @@ class LibrarianTools:
             if(result != None):
                 return True
             mycursor.close()
+            conn.close()
         except Exception as e:
             traceback.print_exc()
         return False

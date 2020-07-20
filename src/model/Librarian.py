@@ -5,16 +5,16 @@ class Librarian:
     password = ""
     
     def getNumberUser(self):
-        return nameUser
+        return str(nameUser)
     
     def setNameUser(self, nameUser):
-        self.nameUser = nameUser
+        self.nameUser = str(nameUser)
 
     def getPassword(self):
-        return password
+        return str(password)
 
     def setPassword(self, password):
-        self.password = password
+        self.password = str(password)
 
     def hashCode(self):
         
@@ -31,21 +31,24 @@ class Librarian:
         result = constants.prime * result + temp
         return result
 
-    def equals(self, Librarian):
-        if (self == Librarian):
+    def equals(self, librarian):
+        if (self == str(librarian)):
             return True
-        if (Librarian == None):
+        if (str(librarian) == None):
             return False
-        if (self.__class__ != Librarian.__class__):
+        if (__class__ != Librarian):
             return False
         other = Librarian()
-        if (nameUser == None):
+        if (self.nameUser == None):
             if(other.nameUser != None):
                 return False
-        elif (not(nameUser.equals(other.nameUser))):
+        elif (not(self.nameUser == other.nameUser)):
             return False
         return True
 
+    def list_return(self):
+        return (self.nameUser,self.password)
+
     def toString(self):
-        return "Librarian [nameUser=" + nameUser + ", password=" + password + "]"
+        return "Librarian [nameUser=" + self.nameUser + ", password=" + self.password + "]"
 
