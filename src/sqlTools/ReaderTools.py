@@ -5,18 +5,21 @@ from ..database.database import DatabaseTools
 
 class ReaderTools:
     def ReaderData(self,idReader):
-        sql = "select idReader,nameReader,kind,sex,password from Reader where idReader = %s"
-        answer = str(idReader)
         db = DatabaseTools()
         conn = db.getConn()
         result_set = None
         ls = []
         try :
+            sql = "select idReader,nameReader,kind,sex,password from Reader where idReader = %s"
+            answer = (str(idReader),)
+            
+            print(answer)
+
             mycursor = conn.cursor()
 
             mycursor.execute(sql,answer)
 
-            result_set = (mycursor.fetchall())
+            result_set = mycursor.fetchall()
 
             for row in result_set:
                 reader = Reader()
