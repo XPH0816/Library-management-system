@@ -25,7 +25,7 @@ class ReaderTools:
                 reader.setLevel(row[2])
                 reader.setSex(row[3])
                 reader.setPassword(row[4])
-                ls.append(reader)
+                ls.append(reader.list_return_reader())
             
             mycursor.close()
             conn.close()
