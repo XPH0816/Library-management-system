@@ -10,4 +10,4 @@ from src.sqlTools.ReaderTools import *
 #print(login.LibrarianLogin("root","root"))
 
 get_data = ReaderTools()
-print(get_data.ReaderData("001"))
+print(get_data.ReaderData())
