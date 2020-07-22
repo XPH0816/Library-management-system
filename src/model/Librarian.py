@@ -31,10 +31,12 @@ class Librarian:
         result = constants.prime * result + temp
         return result
 
-    def equals(self, librarian):
-        if (self == str(librarian)):
+    #check the input are not Null
+    #Return True when is Null
+    def equals(self, reference, current): 
+        if (current == reference):
             return True
-        if (str(librarian) == None):
+        if (current == None):
             return False
         if (__class__ != Librarian):
             return False

@@ -76,10 +76,10 @@ class Reader:
         
         return result
 
-    def equals(self, reader):
-        if (self == str(reader)):
+    def equals(self, reference, current):
+        if (reference == current):
             return True
-        if (str(reader) == None):
+        if (current == None):
             return False
         if (__class__ != Reader):
             return False

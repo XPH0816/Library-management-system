@@ -12,8 +12,6 @@ class ReaderTools:
         try :
             sql = "select idReader,nameReader,kind,sex,password from Reader where idReader = %s"
             answer = (str(idReader),)
-            
-            print(answer)
 
             mycursor = conn.cursor()
 
