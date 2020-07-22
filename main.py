@@ -9,8 +9,5 @@ from src.sqlTools.ReaderTools import *
 #login = LibrarianTools()
 #print(login.LibrarianLogin("root","root"))
 
-librarian = Librarian()
-print(librarian.equals("",librarian.nameUser))
-
 get_data = ReaderTools()
 print(get_data.ReaderData("001"))
