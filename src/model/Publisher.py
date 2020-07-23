@@ -27,14 +27,16 @@ class Publisher:
         if (self.address == None):
             temp = 0
         else :
-            temp = self.hashCode() 
-
-        if (self.name == None):
-            temp = 0
-        else :
-            temp = self.hashCode()
+            temp = int(hash(self.address))
 
         result = prime * result + temp
+
+        if (self.name == None):
+            temp1 = 0
+        else :
+            temp1 = int(hash(self.name))
+
+        result = prime * result + temp1
         
         return result
 
@@ -59,4 +61,4 @@ class Publisher:
         return True
 
     def toString(self):
-        return "Publisher [name =" + self.name + ", address=" + self.address + "]"
+        return "Publisher [name = " + self.name + ", address = " + self.address + "]"

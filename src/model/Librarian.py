@@ -22,17 +22,17 @@ class Librarian:
         Constants = namedtuple('Constants',['prime'])
         constants = Constants(31)
 
-        if nameUser == None :
+        if self.nameUser == None :
             temp = 0
         else :
-            temp = nameUser.hashCode()
+            temp = int(hash(self.nameUser))
 
         result = 1
         result = constants.prime * result + temp
         return result
 
-    #check the input are not Null
-    #Return True when is Null
+    #check the input are not equal
+    #Return True when is equal
     def equals(self, reference, current): 
         if (current == reference):
             return True
@@ -52,5 +52,5 @@ class Librarian:
         return (self.nameUser,self.password)
 
     def toString(self):
-        return "Librarian [nameUser=" + self.nameUser + ", password=" + self.password + "]"
+        return "Librarian [nameUser = " + self.nameUser + ", password=" + self.password + "]"
 

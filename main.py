@@ -18,7 +18,7 @@ person1.password = "root"
 
 print(person1.toString())
 
-get_data = ReaderTools()
+#get_data = ReaderTools()
 
 #print(get_data.DeleteReader(person1.idReader))
-print(get_data.ReaderData())
+#print(get_data.ReaderData())
