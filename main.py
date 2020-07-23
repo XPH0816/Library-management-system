@@ -16,9 +16,9 @@ person1.level = "教师"
 person1.sex = "男"
 person1.password = "root"
 
-print(person1.list_return_reader())
+print(person1.toString())
 
 get_data = ReaderTools()
 
-print(get_data.DeleteReader(person1.idReader))
+#print(get_data.DeleteReader(person1.idReader))
 print(get_data.ReaderData())
