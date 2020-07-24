@@ -55,4 +55,44 @@ class PublisherTools:
             traceback.print_exc()
         return ls
 
-    def addPublisher(self)
+    def addPublisher(self, Publisher):
+        i = 0
+        db = DatabaseTools()
+        conn = db.getConn()
+        try :
+            sql = "insert into publisher (name,address)values(%s,%s)"
+            answer = (str(Publisher.name),str(Publisher.address))
+
+            mycursor = conn.cursor()
+
+            mycursor.execute(sql,answer)
+
+            i = mycursor.rowcount
+
+            mycursor.close()
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            traceback.print_exc()
+        return i
+
+    def UpdatePublisher(self, Publisher):
+        i = 0
+        db = DatabaseTools()
+        conn = db.getConn()
+        try :
+            sql = "update publisher set name=%s,address=%s where name=%s"
+            answer = (str(Publisher.name),str(Publisher.address))
+
+            mycursor = conn.cursor()
+
+            mycursor.execute(sql,answer)
+
+            i = mycursor.rowcount
+
+            mycursor.close()
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            traceback.print_exc()
+        return i
