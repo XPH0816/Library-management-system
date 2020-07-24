@@ -133,5 +133,8 @@ class Book:
             return False
         return True
 
+    def list_return(self):
+        return (self.idBook,self.nameBook,self.price,self.type_,self.author,self.publisher)
+
     def toString(self):
         return "Book [idBook = " + self.idBook + ", nameBook = " + self.nameBook + ", price = " + self.price + ", type = " + self.type_ + ", author = "+ self.author + ", publisher = " + self.publisher + "]"
