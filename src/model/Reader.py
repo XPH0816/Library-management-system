@@ -106,7 +106,7 @@ class Reader:
             return False
         return True
 
-    def list_return_reader(self):
+    def list_return(self):
         return (self.idReader,self.nameReader,self.level,self.sex,self.password)
 
     def toString(self):

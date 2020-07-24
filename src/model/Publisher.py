@@ -60,5 +60,8 @@ class Publisher:
             return False
         return True
 
+    def list_return(self):
+        return (self.name,self.address)
+
     def toString(self):
         return "Publisher [name = " + self.name + ", address = " + self.address + "]"
