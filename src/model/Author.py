@@ -58,4 +58,4 @@ class Author:
         return True
 
     def toString(self):
-        return "Author [name = " + self.name + ", workplace " + self.workplace +  "]"
+        return "Author [name = " + self.name + ", workplace = " + self.workplace +  "]"

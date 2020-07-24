@@ -16,7 +16,7 @@ person1.level = "教师"
 person1.sex = "男"
 person1.password = "root"
 
-print(person1.toString())
+print(person1.equals("",person1.idReader))
 
 #get_data = ReaderTools()
 

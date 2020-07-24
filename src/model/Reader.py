@@ -54,25 +54,25 @@ class Reader:
         result = constants.prime * result + temp
 
         if self.nameReader == None:
-            temp1 = 0
+            temp = 0
         else:
-            temp1 = int(hash(self.nameReader))
+            temp = int(hash(self.nameReader))
 
-        result = constants.prime * result + temp1
+        result = constants.prime * result + temp
 
         if self.sex == None:
-            temp2 = 0
+            temp = 0
         else:
-            temp2 = int(hash(self.sex))
+            temp = int(hash(self.sex))
 
-        result = constants.prime * result + temp2
+        result = constants.prime * result + temp
 
         if self.level == None:
-            temp3 = 0
+            temp = 0
         else:
-            temp3 = int(hash(self.level))
+            temp = int(hash(self.level))
         
-        result = constants.prime * result + temp3
+        result = constants.prime * result + temp
         
         return result
 

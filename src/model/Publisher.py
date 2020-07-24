@@ -32,11 +32,11 @@ class Publisher:
         result = prime * result + temp
 
         if (self.name == None):
-            temp1 = 0
+            temp = 0
         else :
-            temp1 = int(hash(self.name))
+            temp = int(hash(self.name))
 
-        result = prime * result + temp1
+        result = prime * result + temp
         
         return result
 
