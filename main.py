@@ -4,7 +4,7 @@ from src.model.Reader import *
 from src.model.Librarian import *
 from src.sqlTools.ReaderTools import *
     
-main = MainFrame()
+#main = MainFrame()
 
 #login = LibrarianTools()
 #print(login.LibrarianLogin("root","root"))
