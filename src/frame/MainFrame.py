@@ -2,16 +2,12 @@ import traceback
 import src.frame.loginFrame
 from src.frame.loginFrame import *
 
-def main():
+class MainFrame:
+    def __init__(self):
 
-    try:
-        frame = LoginFrame()
-        frame.loginFrame()
+        try:
+            frame = LoginFrame()
+            frame.loginFrame()
 
-    except Exception as e:
-        traceback.print_exc()
-
-
-
-if __name__ == "__main__" :
-    main()
+        except Exception as e:
+            traceback.print_exc()
