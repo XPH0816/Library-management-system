@@ -57,5 +57,8 @@ class Author:
             return False
         return True
 
+    def list_return(self):
+        return (self.name,self.workplace)
+
     def toString(self):
         return "Author [name = " + self.name + ", workplace = " + self.workplace +  "]"
