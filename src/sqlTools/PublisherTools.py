@@ -28,3 +28,31 @@ class PublisherTools:
         except Exception as e:
             traceback.print_exc()
         return publisher.list_return()
+
+    def PublisherData(self):
+        db = DatabaseTools()
+        conn = db.getConn()
+        result_set = None
+        ls = []
+        try:
+            sql = "select name,address from publisher"
+
+            mycursor = conn.cursor()
+
+            mycursor.execute(sql)
+
+            result_set = (mycursor.fetchall())
+
+            for row in result_set:
+                publisher = Publisher()
+                publisher.setName(row[0])
+                publisher.setAddress(row[1])
+                ls.append(publisher.list_return())
+
+            mycursor.close()
+            conn.close()
+        except Exception as e:
+            traceback.print_exc()
+        return ls
+
+    def addPublisher(self)

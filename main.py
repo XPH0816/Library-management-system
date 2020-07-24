@@ -20,5 +20,5 @@ from src.sqlTools.PublisherTools import *
 
 get_data = PublisherTools()
 
-print(get_data.PublisherDataName("中信出版社"))
+print(get_data.PublisherData())
 #print(get_data.ReaderData())
