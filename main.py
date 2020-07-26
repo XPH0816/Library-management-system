@@ -1,24 +1,25 @@
 from src.frame.MainFrame import *
 #from src.sqlTools.LibrarianTools import *
-from src.model.Reader import *
+from src.model.Book import *
 from src.model.Librarian import *
-from src.sqlTools.ReaderTools import *
+from src.sqlTools.BookTools import *
     
 #main = MainFrame()
 
 #login = LibrarianTools()
 #print(login.LibrarianLogin("root","root"))
 
-#person1 = Reader()
-#person1.idReader = "011"
-#person1.nameReader = "baba"
-#person1.level = "教师"
-#person1.sex = "男"
-#person1.password = "root"
+#person1 = Book()
+#person1.idBook = "001"
+#person1.nameBook = "周易"
+#person1.price = 23
+#person1.type_ = "文学"
+#person1.author = "山彤"
+#person1.publisher = "商务印书出版社"
 
 #print(person1.equals("",person1.idReader))
 
-#get_data = ReaderTools()
+#get_data = BookTools()
 
-#print(get_data.DeleteReader(person1.idReader))
-#print(get_data.ReaderData())
+#print(get_data.UpdateBook(person1))
+#print(get_data.BookData())

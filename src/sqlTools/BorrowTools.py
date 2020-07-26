@@ -1,47 +1,17 @@
 import traceback
 import mysql.connector
+from ..database.database import *
 from ..model.Book import *
-from ..database.database import DatabaseTools
 
-class BookTools:
-    def BookData(self):
+class BorrowTools:
+    def BookData(self, idReader):
         db = DatabaseTools()
         conn = db.getConn()
         result_set = None
         ls = []
         try :
-            sql = "select idBook,nameBook,price,kind,author,publisher from Book"
-            
-            mycursor = conn.cursor()
-
-            mycursor.execute(sql)
-
-            result_set = mycursor.fetchall()
-
-            for row in result_set:
-                book = Book()
-                book.setIdBook(row[0])
-                book.setNameBook(row[1])
-                book.setPrice(row[2])
-                book.setType(row[3])
-                book.setAuthor(row[4])
-                book.setPublisher(row[5])
-                ls.append(book.list_return())
-
-            mycursor.close()
-            conn.close()
-        except Exception as e:
-            traceback.print_exc()
-        return ls
-
-    def BookDataName(self, nameBook):
-        db = DatabaseTools()
-        conn = db.getConn()
-        result_set = None
-        ls = []
-        try:
-            sql = "select idBook,nameBook,price,kind,author,publisher from Book where nameBook like %s"
-            answer= ("%"+str(nameBook)+"%",)
+            sql = "select book.idBook,nameBook,price,book.kind,author,publisher from reader,borrow,book where book.idBook = borrow.idBook and reader.idReader = borrow.idReader and reader.idReader = %s "
+            answer = (str(idReader),)
 
             mycursor = conn.cursor()
 
@@ -65,13 +35,13 @@ class BookTools:
             traceback.print_exc()
         return ls
 
-    def Search_Book(self, idBook):
+    def BookData_Search_idBook(self, idBook):
         db = DatabaseTools()
         conn = db.getConn()
         result_set = None
-        book = None
-        try:
-            sql = "select idBook,nameBook,price,kind,author,publisher from Book where idBook= %s "
+        ls = []
+        try :
+            sql = "select book.idBook,nameBook,price,book.kind,author,publisher from book where book.idBook = %s"
             answer = (str(idBook),)
 
             mycursor = conn.cursor()
@@ -88,20 +58,44 @@ class BookTools:
                 book.setType(row[3])
                 book.setAuthor(row[4])
                 book.setPublisher(row[5])
+                ls.append(book.list_return())
 
             mycursor.close()
             conn.close()
         except Exception as e:
             traceback.print_exc()
-        return book.list_return()
+        return ls
 
-    def AddBook(self, Book):
+    def whetherInStock(self, idBook):
+        db = DatabaseTools()
+        conn = db.getConn()
+        try :
+            sql = "select * from borrow"
+
+            mycursor = conn.cursor()
+
+            mycursor.execute(sql)
+
+            result_set = mycursor.fetchall()
+
+            for row in result_set :
+                if row[1] != None :
+                    if row[1] == idBook :
+                        return False
+
+            mycursor.close()
+            conn.close()
+        except Exception as e:
+            traceback.print_exc()
+        return True
+
+    def BorrowBook(self, idReader, idBook):
         i = 0
         db = DatabaseTools()
         conn = db.getConn()
         try :
-            sql = "insert into book (idBook,nameBook,price,kind,author,publisher)values(%s,%s,%s,%s,%s,%s)"
-            answer = (str(Book.idBook), str(Book.nameBook), str(Book.price), str(Book.type_), str(Book.author), str(Book.publisher))
+            sql = "insert into borrow (idReader,idbook,lendDate,dueDate,overtime)values(%s,%s,CURRENT_DATE(),DATE_ADD(CURRENT_DATE(),INTERVAL 2 MONTH),'否')"
+            answer = (str(idReader),str(idBook))
 
             mycursor = conn.cursor()
 
@@ -116,13 +110,13 @@ class BookTools:
             traceback.print_exc()
         return i
 
-    def UpdateBook(self, Book):
+    def ReturnBook(self, idBook):
         i = 0
         db = DatabaseTools()
         conn = db.getConn()
         try :
-            sql = "update book set idBook=%s,nameBook=%s,price=%s,kind=%s,author=%s,publisher=%s where idBook=%s"
-            answer = (str(Book.idBook), str(Book.nameBook), str(Book.price), str(Book.type_), str(Book.author), str(Book.publisher), str(Book.idBook))
+            sql = "delete from Borrow where idBook= %s"
+            answer = (str(idBook),)
 
             mycursor = conn.cursor()
 
@@ -136,24 +130,7 @@ class BookTools:
         except Exception as e:
             traceback.print_exc()
         return i
+        
 
-    def DeteleBook(self, idbook):
-        i = 0
-        db = DatabaseTools()
-        conn = db.getConn()
-        try:
-            sql = "delete from Book where idBook=%s"
-            answer = (str(idbook),)
 
-            mycursor = conn.cursor()
 
-            mycursor.execute(sql,answer)
-
-            i = mycursor.rowcount
-
-            mycursor.close()
-            conn.commit()
-            conn.close()
-        except Exception as e:
-            traceback.print_exc()
-        return i
