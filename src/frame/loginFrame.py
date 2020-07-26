@@ -2,6 +2,10 @@ from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
 from PIL import ImageTk,Image
+from ..model.Librarian import *
+from ..model.Reader import *
+from ..sqlTools.LibrarianTools import *
+from ..sqlTools.ReaderTools import *
 
 class LoginFrame:
     def loginFrame(self):
