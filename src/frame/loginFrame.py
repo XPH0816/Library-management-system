@@ -9,7 +9,20 @@ from ..sqlTools.LibrarianTools import *
 from ..sqlTools.ReaderTools import *
 
 class LoginFrame:
+        
     def loginFrame(self):
+        
+        #Function for button to Unshow/Show Password
+        def show_password():
+            if Show_Button.cget('image') == ('pyimage2',):
+                Show_Button.config(image=unlock)
+                Password.config(show="")
+            else :
+                Show_Button.config(image=button_image)
+                Password.config(show="*")
+            
+
+
         root = Tk()
 
         #Setting the Title
@@ -38,14 +51,14 @@ class LoginFrame:
         y1 = int(y1)
 
         #Setting Radio Button Variable
-        var = IntVar()
+        var = IntVar() # 1 for Reader , 2 for Librarian
 
         #Setting Style for ttk
         style = ttk.Style()
         style.configure("BW.TLabel", foreground="black", background="MediumPurple1")
         style.configure("BL.Label", foreground="black", background="MediumPurple2")
 
-        background_image = Image.open("src\picture\Mac.jpeg")
+        background_image = Image.open("src\\picture\\Mac.jpeg")
         background_image = background_image.resize((x1, y1), Image.ANTIALIAS)
         background_image = ImageTk.PhotoImage(background_image)
         background_label = Canvas(root, width=x, height=y)
@@ -71,10 +84,17 @@ class LoginFrame:
         login_frame, text="Password :", font=("Cascadia Code", 11))
         Password = ttk.Entry(login_frame, font=("Cascadia Code", 10), show="*")
 
-        button_image = Image.open("src\picture\lock.png")
+        #Setting Lock Button Image
+        button_image = Image.open("src\\picture\\lock.png")
         button_image = button_image.resize((16, 16), Image.ANTIALIAS)
         button_image = ImageTk.PhotoImage(button_image)
-        Show_Button = ttk.Button(login_frame, image=button_image)
+
+        #Setting Unlock Button Image
+        unlock = Image.open("src\\picture\\unlock.png")
+        unlock = unlock.resize((16, 16), Image.ANTIALIAS)
+        unlock = ImageTk.PhotoImage(unlock)
+
+        Show_Button = ttk.Button(login_frame, image=button_image, command=show_password)
 
         Password_label.place(relx=0.03, rely=0.375)
         Password.place(relx=0.36, rely=0.385, relwidth=0.43)
