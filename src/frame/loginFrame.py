@@ -20,6 +20,12 @@ class LoginFrame:
             else :
                 Show_Button.config(image=button_image)
                 Password.config(show="*")
+
+        def check_login():
+            if (var.get() == 1):
+                rTools = ReaderTools()
+                reader = Reader()
+                reader.setIdReader(Username.get())
             
 
 

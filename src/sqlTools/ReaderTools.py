@@ -99,7 +99,7 @@ class ReaderTools:
         db = DatabaseTools()
         conn = db.getConn()
         try:
-            sql = "select idReader,password from reader where idReader= '%s' and password= '%s' "
+            sql = "select idReader,password from reader where idReader= %s and password= %s "
             answer = (str(idReader),str(password))
 
             mycursor = conn.cursor()

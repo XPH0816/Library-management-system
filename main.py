@@ -2,12 +2,12 @@ from src.frame.MainFrame import *
 #from src.sqlTools.LibrarianTools import *
 from src.model.Book import *
 from src.model.Librarian import *
-from src.sqlTools.BookTools import *
+from src.sqlTools.LibrarianTools import *
     
-main = MainFrame()
+#main = MainFrame()
 
-#login = LibrarianTools()
-#print(login.LibrarianLogin("root","root"))
+login = LibrarianTools()
+print(login.LibrarianLogin("root","root"))
 
 #person1 = Book()
 #person1.idBook = "001"
