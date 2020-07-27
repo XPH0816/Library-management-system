@@ -6,3 +6,9 @@ from PIL import ImageTk, Image
 class Login_ReaderFrame:
     def __init__(self):
         root = Tk()
+
+        #Setting the Title
+        root.title("Library Management System")
+
+        #Setting the icon
+        root.iconbitmap('src\\picture\\library.ico')
