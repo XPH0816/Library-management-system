@@ -1,9 +1,11 @@
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
+from tkinter import messagebox
 from PIL import ImageTk,Image
 
 from ..frame.Login_ReaderFrame import *
+from ..frame.Login_LibrarianFrame import *
 
 from ..model.Librarian import *
 from ..model.Reader import *
@@ -13,6 +15,9 @@ from ..sqlTools.ReaderTools import *
 class LoginFrame:
         
     def loginFrame(self):
+
+        def CloseFrame():
+            root.destroy()
         
         #Function for button to Unshow/Show Password
         def show_password():
@@ -38,7 +43,7 @@ class LoginFrame:
                         idReader = reader.getIdReader()
                         
                         frame = Login_ReaderFrame()
-                        root.quit()
+                        CloseFrame()
                     else :
                         messagebox.showinfo("用户名或密码错误", "用户名或密码错误")
                 else :
@@ -55,7 +60,7 @@ class LoginFrame:
                         nameUser = lib.getNameUser()
 
                         frame = Login_LibrarianFrame()
-                        root.quit()
+                        CloseFrame()
                     else:
                         messagebox.showinfo("用户名或密码错误", "用户名或密码错误")
                 else:

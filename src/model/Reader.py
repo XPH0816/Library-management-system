@@ -9,31 +9,31 @@ class Reader:
     password = ""
 
     def getIdReader(self):
-        return idReader
+        return self.idReader
     
     def setIdReader(self, idReader):
         self.idReader = idReader
 
     def getNameReader(self):
-        return nameReader
+        return self.nameReader
 
     def setNameReader(self, nameReader):
         self.nameReader = nameReader
 
     def getLevel(self):
-        return level
+        return self.level
 
     def setLevel(self, level):
         self.level = level
 
     def getSex(self):
-        return sex
+        return self.sex
 
     def setSex(self, sex):
         self.sex = sex
 
     def getPassword(self):
-        return password
+        return self.password
 
     def setPassword(self, password):
         self.password = password

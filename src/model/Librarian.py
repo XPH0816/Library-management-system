@@ -5,13 +5,13 @@ class Librarian:
     password = ""
     
     def getNameUser(self):
-        return str(nameUser)
+        return str(self.nameUser)
     
     def setNameUser(self, nameUser):
         self.nameUser = str(nameUser)
 
     def getPassword(self):
-        return str(password)
+        return str(self.password)
 
     def setPassword(self, password):
         self.password = str(password)
