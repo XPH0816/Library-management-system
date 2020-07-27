@@ -3,6 +3,8 @@ from tkinter import ttk
 from tkinter import *
 from PIL import ImageTk,Image
 
+from ..frame.Gif_ReaderFrame import *
+
 from ..model.Librarian import *
 from ..model.Reader import *
 from ..sqlTools.LibrarianTools import *
@@ -26,8 +28,15 @@ class LoginFrame:
                 rTools = ReaderTools()
                 reader = Reader()
                 reader.setIdReader(Username.get())
-            
+                reader.setPassword(Password.get())
 
+                if ((Username.get() != None) and (not(reader.equals("",Username.get()))) and (Password.get() != None) and (not(reader.equals("",Password.get())))):
+                    whether_login = rTools.ReaderLogin(reader.getIdReader(), reader.getPassword())
+                    nameReader = (rTools.ReaderDataId(reader.getIdReader())[0][1])
+                    if(whether_login == True):
+                        idReader = reader.getIdReader()
+            
+            return None
 
         root = Tk()
 
