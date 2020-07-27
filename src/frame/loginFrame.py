@@ -44,7 +44,7 @@ class LoginFrame:
         root.title("Library Management System")
 
         #Setting the icon
-        root.iconbitmap('src\picture\library.ico')
+        root.iconbitmap('src\\picture\\library.ico')
 
         #Get the screen resolution
         x = root.winfo_screenwidth()
