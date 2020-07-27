@@ -3,7 +3,7 @@ from tkinter import ttk
 from tkinter import *
 from PIL import ImageTk,Image
 
-from ..frame.Gif_ReaderFrame import *
+from ..frame.Login_ReaderFrame import *
 
 from ..model.Librarian import *
 from ..model.Reader import *
@@ -23,6 +23,7 @@ class LoginFrame:
                 Show_Button.config(image=button_image)
                 Password.config(show="*")
 
+        #Function to check login to next Frame
         def check_login():
             if (var.get() == 1):
                 rTools = ReaderTools()
@@ -35,7 +36,30 @@ class LoginFrame:
                     nameReader = (rTools.ReaderDataId(reader.getIdReader())[0][1])
                     if(whether_login == True):
                         idReader = reader.getIdReader()
-            
+                        
+                        frame = Login_ReaderFrame()
+                        root.quit()
+                    else :
+                        messagebox.showinfo("用户名或密码错误", "用户名或密码错误")
+                else :
+                    messagebox.showinfo("请填写用户名和密码", "请填写用户名和密码")
+            elif (var.get() == 2):
+                libTools = LibrarianTools()
+                lib = Librarian()
+                lib.setNameUser(Username.get())
+                lib.setPassword(Password.get())
+
+                if ((Username.get() != None) and (not(lib.equals("", Username.get()))) and (Password.get() != None) and (not(lib.equals("", Password.get())))):
+                    whether_login = libTools.LibrarianLogin(lib.getNameUser(),lib.getPassword())
+                    if (whether_login == True):
+                        nameUser = lib.getNameUser()
+
+                        frame = Login_LibrarianFrame()
+                        root.quit()
+                    else:
+                        messagebox.showinfo("用户名或密码错误", "用户名或密码错误")
+                else:
+                    messagebox.showinfo("请填写用户名和密码", "请填写用户名和密码")
             return None
 
         root = Tk()
@@ -126,7 +150,7 @@ class LoginFrame:
 
         button_frame = ttk.Frame(login_frame, relief=GROOVE)
         button_frame.place(relx=0.1, rely=0.73, relwidth=0.8, relheight=0.2)
-        button_login = ttk.Button(button_frame, text="Login")
+        button_login = ttk.Button(button_frame, text="Login", command=check_login)
         button_clear = ttk.Button(button_frame, text="Clear")
         button_login.place(relx=0.55, rely=0.25, relwidth=0.4)
         button_clear.place(relx=0.05, rely=0.25, relwidth=0.4)

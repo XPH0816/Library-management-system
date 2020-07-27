@@ -4,7 +4,7 @@ class Librarian:
     nameUser = ""
     password = ""
     
-    def getNumberUser(self):
+    def getNameUser(self):
         return str(nameUser)
     
     def setNameUser(self, nameUser):
