@@ -123,7 +123,7 @@ class LoginFrame:
         login_frame = ttk.Frame(root, relief=GROOVE)
         login_frame.place(relx=0.05, rely=0.3, relwidth=0.9, relheight=0.45)
 
-        Name_label = ttk.Label(login_frame, text="Name :", font=("Cascadia Code", 12))
+        Name_label = ttk.Label(login_frame, text="Name/ID :", font=("Cascadia Code", 12))
         Username = ttk.Entry(login_frame, font=("Cascadia Code", 10))
         Name_label.place(relx=0.03, rely=0.125)
         Username.place(relx=0.36, rely=0.140, relwidth=0.55)
