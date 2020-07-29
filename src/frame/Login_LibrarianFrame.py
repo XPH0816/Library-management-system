@@ -18,12 +18,12 @@ class Login_LibrarianFrame:
         y = root.winfo_screenheight()
 
         #Get the value for windows size
-        x1 = x * (2/9)
-        y1 = y * (7/11)
+        x1 = x * (13/20)
+        y1 = y * (0.81)
 
         #Get the value for Starting point for windows
-        x2 = x * (2/5)
-        y2 = y * (1/7)
+        x2 = x * (1.1/6)
+        y2 = y * (1/12)
 
         root.geometry("%dx%d+%d+%d" % (x1, y1, x2, y2))
         root.resizable(False, False)
