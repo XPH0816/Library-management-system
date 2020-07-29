@@ -45,9 +45,9 @@ class LoginFrame:
                     nameReader = (rTools.ReaderDataId(reader.getIdReader())[0][1])
                     if(whether_login == True):
                         idReader = reader.getIdReader()
-                        
-                        frame = Login_ReaderFrame()
+
                         CloseFrame()
+                        frame = Login_ReaderFrame()
                     else :
                         messagebox.showinfo("用户名或密码错误", "用户名或密码错误")
                 else :
@@ -63,8 +63,8 @@ class LoginFrame:
                     if (whether_login == True):
                         nameUser = lib.getNameUser()
 
-                        frame = Login_LibrarianFrame()
                         CloseFrame()
+                        frame = Login_LibrarianFrame()
                     else:
                         messagebox.showinfo("用户名或密码错误", "用户名或密码错误")
                 else:

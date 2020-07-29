@@ -12,7 +12,7 @@ class Login_ReaderFrame:
 
         #Setting the icon
         root.iconbitmap('src\\picture\\library.ico')
-        
+
         #Get the screen resolution
         x = root.winfo_screenwidth()
         y = root.winfo_screenheight()
@@ -31,3 +31,8 @@ class Login_ReaderFrame:
         #Easy for configure within attribute
         x1 = int(x1)
         y1 = int(y1)
+
+        root.mainloop()
+
+if __name__ == "__main__":
+    frame = Login_ReaderFrame()
