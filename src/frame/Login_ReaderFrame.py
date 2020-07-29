@@ -5,6 +5,10 @@ from PIL import ImageTk, Image
 
 class Login_ReaderFrame:
     def __init__(self):
+
+        def CloseFrame():
+            root.destroy()
+            
         root = Tk()
 
         #Setting the Title
@@ -32,6 +36,9 @@ class Login_ReaderFrame:
         x1 = int(x1)
         y1 = int(y1)
 
+        x_content = int(x1*0.7)
+        y_content = int(y1*0.8)
+
         x_nav = int(x1*0.3)
         y_nav = int(y1*0.8)
 
@@ -44,7 +51,7 @@ class Login_ReaderFrame:
         title_frame.place(relwidth=1, relheight=0.2)
 
         content_frame = ttk.Frame(root, style="Content.TFrame")
-        content_frame.place(relx=0.3,rely=0.2,relwidth=1,relheight=0.8)
+        content_frame.place(relx=0.3,rely=0.2,relwidth=0.7,relheight=0.8)
 
         nav_frame = ttk.Frame(root, style="Nav.TFrame")
         nav_frame.place(rely=0.2,relwidth=0.3,relheight=0.8)

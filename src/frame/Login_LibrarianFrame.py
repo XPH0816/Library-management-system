@@ -5,6 +5,10 @@ from PIL import ImageTk, Image
 
 class Login_LibrarianFrame:
     def __init__(self):
+        
+        def CloseFrame():
+            root.destroy()
+        
         root = Tk()
 
         #Setting the Title
