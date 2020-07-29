@@ -16,6 +16,10 @@ class LoginFrame:
         
     def loginFrame(self):
 
+        def Clear_Input():
+            Username.delete(0,END)
+            Password.delete(0,END)
+
         def CloseFrame():
             root.destroy()
         
@@ -156,7 +160,7 @@ class LoginFrame:
         button_frame = ttk.Frame(login_frame, relief=GROOVE)
         button_frame.place(relx=0.1, rely=0.73, relwidth=0.8, relheight=0.2)
         button_login = ttk.Button(button_frame, text="Login", command=check_login)
-        button_clear = ttk.Button(button_frame, text="Clear")
+        button_clear = ttk.Button(button_frame, text="Clear", command=Clear_Input)
         button_login.place(relx=0.55, rely=0.25, relwidth=0.4)
         button_clear.place(relx=0.05, rely=0.25, relwidth=0.4)
 
