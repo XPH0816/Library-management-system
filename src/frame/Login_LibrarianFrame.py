@@ -71,9 +71,9 @@ class Login_LibrarianFrame:
         Nav_image = ImageTk.PhotoImage(Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        background_label = Canvas(nav_frame, width=x_nav, height=y_nav, highlightthickness=0)
-        background_label.pack()
-        background_label.create_image(0, 0, anchor=NW, image=Nav_image)
+        Nav_label = Canvas(nav_frame, width=x_nav, height=y_nav, highlightthickness=0)
+        Nav_label.pack()
+        Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
 
         root.mainloop()
 

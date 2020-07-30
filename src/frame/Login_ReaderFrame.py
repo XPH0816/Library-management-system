@@ -79,9 +79,9 @@ class Login_ReaderFrame:
         Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
 
         nav_button1 = ttk.Button(nav_frame, text="Check Out", style="Nav.TButton")
-        nav_button1.place(relx=0.275,rely=0.1,relwidth=0.45)
+        nav_button1.place(relx=0.275,rely=0.2,relwidth=0.45)
         nav_button2 = ttk.Button(nav_frame, text="Check In", style="Nav.TButton")
-        nav_button2.place(relx=0.275, rely=0.2, relwidth=0.45)
+        nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         root.mainloop()
 
