@@ -1,9 +1,10 @@
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
+from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
-root = Tk()
+root = ThemedTk(theme="equilux")
 
 #Setting the Title
 root.title("Library Management System")
@@ -34,15 +35,27 @@ x_nav = int(x1*0.3)
 y_nav = int(y1*0.8)
 
 style = ttk.Style()
-style.configure("Title.TFrame", foreground="black",
-                background="brown1")
+style.configure("Title.TLabel", foreground="snow")
+style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
+style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
 style.configure("Content.TFrame", foreground="black",
                 background="LightSkyBlue2")
 style.configure("Nav.TFrame", foreground="black",
                 background="SeaGreen1")
 
-title_frame = ttk.Frame(root, style="Title.TFrame")
+title_frame = ttk.Frame(root)
 title_frame.place(relwidth=1, relheight=0.2)
+
+text_frame = ttk.Frame(title_frame)
+text_frame.place(relx=0.1, rely=0.5, relwidth=0.4, relheight=0.5)
+
+title_text = ttk.Label(text_frame, text="Library Management System", font=(
+    "Cascadia Code SemiBold", 18), style="Title.TLabel")
+title_text.place(relx=0.05, rely=0.4)
+
+logout_button = ttk.Button(
+    title_frame, text="Logout", style="Logout.TButton")
+logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
 content_frame = ttk.Frame(root, style="Content.TFrame")
 content_frame.place(relx=0.3, rely=0.2, relwidth=1, relheight=0.8)
