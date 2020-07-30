@@ -75,6 +75,17 @@ class Login_LibrarianFrame:
         Nav_label.pack()
         Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
 
+        nav_button1 = ttk.Button(nav_frame, text="User Register", style="Nav.TButton")
+        nav_button1.place(relx=0.25,rely=0.05,relwidth=0.5)
+        nav_button2 = ttk.Button(nav_frame, text="Book Regsiter", style="Nav.TButton")
+        nav_button2.place(relx=0.25, rely=0.25, relwidth=0.5)
+        nav_button3 = ttk.Button(nav_frame, text="User Manage", style="Nav.TButton")
+        nav_button3.place(relx=0.25, rely=0.45, relwidth=0.5)
+        nav_button4 = ttk.Button(nav_frame, text="Book Manage", style="Nav.TButton")
+        nav_button4.place(relx=0.25, rely=0.65, relwidth=0.5)
+        nav_button5 = ttk.Button(nav_frame, text="Lending Manage", style="Nav.TButton")
+        nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
+
         root.mainloop()
 
 if __name__ == "__main__":

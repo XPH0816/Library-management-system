@@ -5,10 +5,10 @@ class DatabaseTools:
     def getConn(self):
         try:
             mydb = mysql.connector.connect(
-                host="localhost",
+                host="localhost", # IP Address for your SQL server
                 user="root",
                 password="",
-                database="library"
+                database="library"  # your SQL server Database
             )
             return mydb
         except Exception as e:
