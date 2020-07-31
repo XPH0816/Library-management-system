@@ -4,12 +4,8 @@ from tkinter import *
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
-try :
-    from ..frame.Search_BookFrame import *
-    from ..frame.Return_BookFrame import *
-except ImportError:
-    from Search_BookFrame import *
-    from Return_BookFrame import *
+from ..frame.Search_BookFrame import *
+from ..frame.Return_BookFrame import *
 
 class Login_ReaderFrame:
     def __init__(self):
