@@ -4,6 +4,10 @@ from tkinter import *
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
+from ..model.Book import *
+from ..sqlTools.BookTools import *
+from ..sqlTools.BorrowTools import *
+
 from ..frame.Search_BookFrame import *
 from ..frame.Return_BookFrame import *
 

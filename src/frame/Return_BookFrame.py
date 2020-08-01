@@ -4,8 +4,11 @@ from tkinter import *
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
-from ..frame.Search_BookFrame import *
+from ..model.Book import *
+from ..sqlTools.BookTools import *
+from ..sqlTools.BorrowTools import *
 
+from ..frame.Search_BookFrame import *
 
 class Return_BookFrame:
     def __init__(self):
@@ -102,3 +105,6 @@ class Return_BookFrame:
         nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         root.mainloop()
+
+if __name__ == "__main__":
+    frame = Return_BookFrame()

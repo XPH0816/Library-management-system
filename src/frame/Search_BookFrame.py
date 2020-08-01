@@ -4,10 +4,18 @@ from tkinter import *
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
+from ..model.Book import *
+from ..sqlTools.BookTools import *
+from ..sqlTools.BorrowTools import *
+
 from ..frame.Return_BookFrame import *
 
 class Search_BookFrame:
     def __init__(self):
+
+        def show_data():
+            heading = ttk.Treeview(content)
+            heading['columns'] = ("Column 2", "Column 3", "Column 4", "Column 5", "Column 6", "Column 7")
 
         def Open_Search_BookFrame():
             CloseFrame()
@@ -79,6 +87,11 @@ class Search_BookFrame:
         content_frame = ttk.Frame(root, style="Content.TFrame")
         content_frame.place(relx=0.3, rely=0.2, relwidth=0.7, relheight=0.8)
 
+        content = ttk.Frame(content_frame)
+        content.place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.9)
+
+        show_data()
+
         nav_frame = ttk.Frame(root, style="Nav.TFrame")
         nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
@@ -101,3 +114,6 @@ class Search_BookFrame:
         nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         root.mainloop()
+
+if __name__ == "__main__":
+    frame = Search_BookFrame()
