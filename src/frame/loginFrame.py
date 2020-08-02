@@ -25,7 +25,7 @@ class LoginFrame:
         
         #Function for button to Unshow/Show Password
         def show_password():
-            if Show_Button.cget('image') == ('pyimage2',):
+            if Show_Button.cget('image') == (str(button_image),):
                 Show_Button.config(image=unlock)
                 Password.config(show="")
             else :

@@ -4,9 +4,15 @@ from tkinter import *
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
+from importlib import reload
+
 from ..model.Book import *
 from ..sqlTools.BookTools import *
 from ..sqlTools.BorrowTools import *
+
+import sys
+reload(sys.modules["src.frame.loginFrame"]) #Cancel the Circular Import and get back to last module
+from ..frame.loginFrame import LoginFrame
 
 class Login_ReaderFrame:
     def __init__(self):
@@ -18,6 +24,11 @@ class Login_ReaderFrame:
         def Open_Return_BookFrame():
             CloseFrame()
             frame = Return_BookFrame()
+
+        def Logout():
+            CloseFrame()
+            frame = LoginFrame()
+            frame.loginFrame()
 
         def CloseFrame():
             root.destroy()
@@ -71,7 +82,7 @@ class Login_ReaderFrame:
         title_text = ttk.Label(text_frame,text="Library Management System",font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
         title_text.place(relx=0.05,rely=0.4)
 
-        logout_button = ttk.Button(title_frame,text="Logout", style="Logout.TButton")
+        logout_button = ttk.Button(title_frame,text="Logout", style="Logout.TButton", command=Logout)
         logout_button.place(relx=0.78,rely=0.58,relwidth=0.15)
 
         content_frame = ttk.Frame(root, style="Content.TFrame")
@@ -109,6 +120,11 @@ class Return_BookFrame:
             CloseFrame()
             frame = Return_BookFrame()
 
+        def Logout():
+            CloseFrame()
+            frame = LoginFrame()
+            frame.loginFrame()
+
         def CloseFrame():
             root.destroy()
 
@@ -151,8 +167,7 @@ class Return_BookFrame:
         style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
         style.configure("Content.TFrame", foreground="black",
                         background="LightSkyBlue2")
-        style.configure("Nav.TFrame", foreground="black",
-                        background="SeaGreen1")
+        style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         title_frame = ttk.Frame(root)
         title_frame.place(relwidth=1, relheight=0.2)
@@ -160,12 +175,10 @@ class Return_BookFrame:
         text_frame = ttk.Frame(title_frame)
         text_frame.place(relx=0.1, rely=0.5, relwidth=0.4, relheight=0.5)
 
-        title_text = ttk.Label(text_frame, text="Library Management System", font=(
-            "Cascadia Code SemiBold", 18), style="Title.TLabel")
+        title_text = ttk.Label(text_frame, text="Library Management System", font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
         title_text.place(relx=0.05, rely=0.4)
 
-        logout_button = ttk.Button(
-            title_frame, text="Logout", style="Logout.TButton")
+        logout_button = ttk.Button(title_frame, text="Logout", style="Logout.TButton", command=Logout)
         logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
         content_frame = ttk.Frame(root, style="Content.TFrame")
@@ -201,8 +214,7 @@ class Search_BookFrame:
 
         def show_data():
             heading = ttk.Treeview(content)
-            heading['columns'] = ("Column 2", "Column 3",
-                                  "Column 4", "Column 5", "Column 6", "Column 7")
+            heading['columns'] = ("Column 2", "Column 3","Column 4", "Column 5", "Column 6", "Column 7")
 
         def Open_Search_BookFrame():
             CloseFrame()
@@ -211,6 +223,11 @@ class Search_BookFrame:
         def Open_Return_BookFrame():
             CloseFrame()
             frame = Return_BookFrame()
+
+        def Logout():
+            CloseFrame()
+            frame = LoginFrame()
+            frame.loginFrame()
 
         def CloseFrame():
             root.destroy()
@@ -252,10 +269,8 @@ class Search_BookFrame:
         style.configure("Title.TLabel", foreground="snow")
         style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
         style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
-        style.configure("Content.TFrame", foreground="black",
-                        background="LightSkyBlue2")
-        style.configure("Nav.TFrame", foreground="black",
-                        background="SeaGreen1")
+        style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         title_frame = ttk.Frame(root)
         title_frame.place(relwidth=1, relheight=0.2)
@@ -263,12 +278,10 @@ class Search_BookFrame:
         text_frame = ttk.Frame(title_frame)
         text_frame.place(relx=0.1, rely=0.5, relwidth=0.4, relheight=0.5)
 
-        title_text = ttk.Label(text_frame, text="Library Management System", font=(
-            "Cascadia Code SemiBold", 18), style="Title.TLabel")
+        title_text = ttk.Label(text_frame, text="Library Management System", font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
         title_text.place(relx=0.05, rely=0.4)
 
-        logout_button = ttk.Button(
-            title_frame, text="Logout", style="Logout.TButton")
+        logout_button = ttk.Button(title_frame, text="Logout", style="Logout.TButton", command=Logout)
         logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
         content_frame = ttk.Frame(root, style="Content.TFrame")
@@ -288,16 +301,13 @@ class Search_BookFrame:
         Nav_image = ImageTk.PhotoImage(Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        Nav_label = Canvas(nav_frame, width=x_nav,
-                           height=y_nav, highlightthickness=0)
+        Nav_label = Canvas(nav_frame, width=x_nav, height=y_nav, highlightthickness=0)
         Nav_label.pack()
         Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
 
-        nav_button1 = ttk.Button(
-            nav_frame, text="Check Out", style="Nav.TButton", command=Open_Search_BookFrame)
+        nav_button1 = ttk.Button(nav_frame, text="Check Out", style="Nav.TButton", command=Open_Search_BookFrame)
         nav_button1.place(relx=0.275, rely=0.2, relwidth=0.45)
-        nav_button2 = ttk.Button(
-            nav_frame, text="Check In", style="Nav.TButton", command=Open_Return_BookFrame)
+        nav_button2 = ttk.Button(nav_frame, text="Check In", style="Nav.TButton", command=Open_Return_BookFrame)
         nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         root.mainloop()
