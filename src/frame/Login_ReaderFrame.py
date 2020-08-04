@@ -214,23 +214,24 @@ class Search_BookFrame:
 
         def show_data():
             heading = ttk.Treeview(content)
+            
             #Creating Columns
             heading['columns'] = ("Column 2", "Column 3","Column 4", "Column 5", "Column 6", "Column 7")
-            heading.column("#0", width=10, minwidth=10)
-            heading.column("Column 2", width=50, minwidth=50)
-            heading.column("Column 3", width=10, minwidth=10)
-            heading.column("Column 4", width=10, minwidth=10)
-            heading.column("Column 5", width=10, minwidth=10)
-            heading.column("Column 6", width=50, minwidth=50)
-            heading.column("Column 7", width=50, minwidth=50)
+            heading.column("#0", width=10, minwidth=10, anchor=CENTER)
+            heading.column("Column 2", width=50, minwidth=50, anchor=CENTER)
+            heading.column("Column 3", width=2, minwidth=2, anchor=CENTER)
+            heading.column("Column 4", width=2, minwidth=2, anchor=CENTER)
+            heading.column("Column 5", width=10, minwidth=10, anchor=CENTER)
+            heading.column("Column 6", width=50, minwidth=50, anchor=CENTER)
+            heading.column("Column 7", width=80, minwidth=80, anchor=CENTER)
 
-            heading.heading("#0", text="IdBook", anchor=W)
-            heading.heading("Column 2", text="Book Name", anchor=W)
-            heading.heading("Column 3", text="Price", anchor=W)
-            heading.heading("Column 4", text="Type", anchor=W)
-            heading.heading("Column 5", text="Author", anchor=W)
-            heading.heading("Column 6", text="Publisher", anchor=W)
-            heading.heading("Column 7", text="Whether In Stock",anchor=W)
+            heading.heading("#0", text="IdBook", anchor=CENTER)
+            heading.heading("Column 2", text="Book Name", anchor=CENTER)
+            heading.heading("Column 3", text="Price", anchor=CENTER)
+            heading.heading("Column 4", text="Type", anchor=CENTER)
+            heading.heading("Column 5", text="Author", anchor=CENTER)
+            heading.heading("Column 6", text="Publisher", anchor=CENTER)
+            heading.heading("Column 7", text="Whether In Stock", anchor=CENTER)
 
             bookTools = BookTools()
             booklist = BookTools().BookData()
@@ -306,6 +307,7 @@ class Search_BookFrame:
         style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
         style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
         style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
+        style.configure("Treeview.Heading", font=("Cascadia Code SemiBold", 9))
 
         title_frame = ttk.Frame(root)
         title_frame.place(relwidth=1, relheight=0.2)
@@ -323,7 +325,7 @@ class Search_BookFrame:
         content_frame.place(relx=0.3, rely=0.2, relwidth=0.7, relheight=0.8)
 
         content = ttk.Frame(content_frame)
-        content.place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.9)
+        content.place(relx=0.1, rely=0.2, relwidth=0.8, relheight=0.6)
 
         show_data()
 
