@@ -42,9 +42,9 @@ class LoginFrame:
 
                 if ((Username.get() != None) and (not(reader.equals("",Username.get()))) and (Password.get() != None) and (not(reader.equals("",Password.get())))):
                     whether_login = rTools.ReaderLogin(reader.getIdReader(), reader.getPassword())
-                    nameReader = (rTools.ReaderDataId(reader.getIdReader())[0][1])
                     if(whether_login == True):
                         idReader = reader.getIdReader()
+                        nameReader = (rTools.ReaderDataId(reader.getIdReader())[0][1])
 
                         CloseFrame()
                         frame = Login_ReaderFrame()

@@ -214,7 +214,42 @@ class Search_BookFrame:
 
         def show_data():
             heading = ttk.Treeview(content)
+            #Creating Columns
             heading['columns'] = ("Column 2", "Column 3","Column 4", "Column 5", "Column 6", "Column 7")
+            heading.column("#0", width=10, minwidth=10)
+            heading.column("Column 2", width=50, minwidth=50)
+            heading.column("Column 3", width=10, minwidth=10)
+            heading.column("Column 4", width=10, minwidth=10)
+            heading.column("Column 5", width=10, minwidth=10)
+            heading.column("Column 6", width=50, minwidth=50)
+            heading.column("Column 7", width=50, minwidth=50)
+
+            heading.heading("#0", text="IdBook", anchor=W)
+            heading.heading("Column 2", text="Book Name", anchor=W)
+            heading.heading("Column 3", text="Price", anchor=W)
+            heading.heading("Column 4", text="Type", anchor=W)
+            heading.heading("Column 5", text="Author", anchor=W)
+            heading.heading("Column 6", text="Publisher", anchor=W)
+            heading.heading("Column 7", text="Whether In Stock",anchor=W)
+
+            bookTools = BookTools()
+            booklist = BookTools().BookData()
+
+            borrowTools = BorrowTools()
+
+            for row in booklist:
+                row_index = booklist.index(row) + 1
+                temp = Book()
+                temp.setAll(row)
+                whetherInStock = None
+                if(borrowTools.whetherInStock(temp.getIdBook())):
+                    whetherInStock = "Yes"
+                else :
+                    whetherInStock = "No"
+                heading.insert("",row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(),"%d" % temp.getPrice(),"%s" % temp.getType(),"%s" % temp.getAuthor(),"%s" % temp.getPublisher(),"%s" % whetherInStock) )
+
+            heading.pack(side=TOP,fill=X)
+
 
         def Open_Search_BookFrame():
             CloseFrame()

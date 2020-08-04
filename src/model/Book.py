@@ -8,6 +8,14 @@ class Book:
     author = ""
     publisher = ""
 
+    def setAll(self, list):
+        self.idBook = list[0]
+        self.nameBook = list[1]
+        self.price = int(list[2])
+        self.type_ = list[3]
+        self.author = list[4]
+        self.publisher = list[5]
+
     def getIdBook(self):
         return self.idBook
 
