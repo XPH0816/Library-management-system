@@ -212,31 +212,38 @@ class Search_BookFrame:
 
     def __init__(self):
 
+        def on_tree_select(event):
+            for item in self.heading.selection():
+                item_text = self.heading.item(item,"text")
+                print(item_text)
+
         def show_data():
-            heading = ttk.Treeview(content)
+            self.heading = ttk.Treeview(content)
 
             #Creating Columns
-            heading['columns'] = ("Column 2", "Column 3","Column 4", "Column 5", "Column 6", "Column 7")
-            heading.column("#0", width=5, minwidth=5, anchor=CENTER)
-            heading.column("Column 2", width=60, minwidth=60, anchor=CENTER)
-            heading.column("Column 3", width=2, minwidth=2, anchor=CENTER)
-            heading.column("Column 4", width=2, minwidth=2, anchor=CENTER)
-            heading.column("Column 5", width=10, minwidth=10, anchor=CENTER)
-            heading.column("Column 6", width=50, minwidth=50, anchor=CENTER)
-            heading.column("Column 7", width=80, minwidth=80, anchor=CENTER)
+            self.heading['columns'] = ("Column 2", "Column 3","Column 4", "Column 5", "Column 6", "Column 7")
+            self.heading.column("#0", width=5, minwidth=5, anchor=CENTER)
+            self.heading.column("Column 2", width=60, minwidth=60, anchor=CENTER)
+            self.heading.column("Column 3", width=2, minwidth=2, anchor=CENTER)
+            self.heading.column("Column 4", width=2, minwidth=2, anchor=CENTER)
+            self.heading.column("Column 5", width=10, minwidth=10, anchor=CENTER)
+            self.heading.column("Column 6", width=50, minwidth=50, anchor=CENTER)
+            self.heading.column("Column 7", width=80, minwidth=80, anchor=CENTER)
 
-            heading.heading("#0", text="IdBook", anchor=CENTER)
-            heading.heading("Column 2", text="Book Name", anchor=CENTER)
-            heading.heading("Column 3", text="Price", anchor=CENTER)
-            heading.heading("Column 4", text="Type", anchor=CENTER)
-            heading.heading("Column 5", text="Author", anchor=CENTER)
-            heading.heading("Column 6", text="Publisher", anchor=CENTER)
-            heading.heading("Column 7", text="Whether In Stock", anchor=CENTER)
+            self.heading.heading("#0", text="IdBook", anchor=CENTER)
+            self.heading.heading("Column 2", text="Book Name", anchor=CENTER)
+            self.heading.heading("Column 3", text="Price", anchor=CENTER)
+            self.heading.heading("Column 4", text="Type", anchor=CENTER)
+            self.heading.heading("Column 5", text="Author", anchor=CENTER)
+            self.heading.heading("Column 6", text="Publisher", anchor=CENTER)
+            self.heading.heading("Column 7", text="Whether In Stock", anchor=CENTER)
 
             bookTools = BookTools()
             booklist = BookTools().BookData()
 
             borrowTools = BorrowTools()
+
+            self.heading.bind("<<TreeviewSelect>>", on_tree_select)
 
             for row in booklist:
                 row_index = booklist.index(row) + 1
@@ -247,11 +254,12 @@ class Search_BookFrame:
                     whetherInStock = "Yes"
                 else :
                     whetherInStock = "No"
-                heading.insert("",row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(),"%d" % temp.getPrice(),"%s" % temp.getType(),"%s" % temp.getAuthor(),"%s" % temp.getPublisher(),"%s" % whetherInStock), tags=('Data',))
+                self.heading.insert("", row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(), "%d" % temp.getPrice(
+                ), "%s" % temp.getType(), "%s" % temp.getAuthor(), "%s" % temp.getPublisher(), "%s" % whetherInStock), tags=('Data',))
             
-            heading.tag_configure('Data', font=("Cascadia Code SemiBold", 9))
+            self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 9))
 
-            heading.pack(side=TOP,fill=X)
+            self.heading.pack(side=TOP,fill=X)
 
 
         def Open_Search_BookFrame():
