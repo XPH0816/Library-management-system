@@ -1,6 +1,7 @@
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
+from tkinter import messagebox
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
@@ -101,9 +102,9 @@ class Login_ReaderFrame:
         Nav_label.pack()
         Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
 
-        nav_button1 = ttk.Button(nav_frame, text="Check Out", style="Nav.TButton", command=Open_Search_BookFrame)
+        nav_button1 = ttk.Button(nav_frame, text="Check In", style="Nav.TButton", command=Open_Search_BookFrame)
         nav_button1.place(relx=0.275,rely=0.2,relwidth=0.45)
-        nav_button2 = ttk.Button(nav_frame, text="Check In", style="Nav.TButton", command=Open_Return_BookFrame)
+        nav_button2 = ttk.Button(nav_frame, text="Check Out", style="Nav.TButton", command=Open_Return_BookFrame)
         nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         root.mainloop()
@@ -199,10 +200,9 @@ class Return_BookFrame:
         Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
 
         nav_button1 = ttk.Button(
-            nav_frame, text="Check Out", style="Nav.TButton", command=Open_Search_BookFrame)
+            nav_frame, text="Check In", style="Nav.TButton", command=Open_Search_BookFrame)
         nav_button1.place(relx=0.275, rely=0.2, relwidth=0.45)
-        nav_button2 = ttk.Button(
-            nav_frame, text="Check In", style="Nav.TButton", command=Open_Return_BookFrame)
+        nav_button2 = ttk.Button(nav_frame, text="Check Out", style="Nav.TButton", command=Open_Return_BookFrame)
         nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         root.mainloop()
@@ -212,10 +212,25 @@ class Search_BookFrame:
 
     def __init__(self):
 
-        def on_tree_select(event):
-            for item in self.heading.selection():
-                item_text = self.heading.item(item,"text")
-                print(item_text)
+        def do_borrow_book():
+            for row in self.heading.selection():
+                item_text = self.heading.item(row,"text")
+                check_value = self.heading.item(row,"values")[6]
+                idbook = self.heading.item(row,"values")[0]
+
+            if row == None :
+                messagebox.showwarning("Please Choose A Book","Please Choose A Book")
+            if check_value == "No":
+                messagebox.showwarning("The Choosen Book Has been Borrowed")
+            else :
+                borrowtools = BorrowTools()
+                idReader = LoginFrame.idReader
+                i = borrowtools.BorrowBook(idReader, idbook)
+                if i == 1 :
+                    messagebox.showinfo("Successfully borrowed", "Successfully borrowed")
+                else :
+                    messagebox.showinfo("Failed To Borrow", "Failed To Borrow")
+
 
         def show_data():
             self.heading = ttk.Treeview(content)
@@ -242,8 +257,6 @@ class Search_BookFrame:
             booklist = BookTools().BookData()
 
             borrowTools = BorrowTools()
-
-            self.heading.bind("<<TreeviewSelect>>", on_tree_select)
 
             for row in booklist:
                 row_index = booklist.index(row) + 1
@@ -349,7 +362,7 @@ class Search_BookFrame:
 
         show_data()
 
-        borrow_button = ttk.Button(content_frame, text="Borrow", style="Nav.TButton")
+        borrow_button = ttk.Button(content_frame, text="Borrow", style="Nav.TButton", command=do_borrow_book)
         borrow_button.place(relx=0.65, rely = 0.85)
 
         nav_frame = ttk.Frame(root, style="Nav.TFrame")
@@ -365,9 +378,9 @@ class Search_BookFrame:
         Nav_label.pack()
         Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
 
-        nav_button1 = ttk.Button(nav_frame, text="Check Out", style="Nav.TButton", command=Open_Search_BookFrame)
+        nav_button1 = ttk.Button(nav_frame, text="Check In", style="Nav.TButton", command=Open_Search_BookFrame)
         nav_button1.place(relx=0.275, rely=0.2, relwidth=0.45)
-        nav_button2 = ttk.Button(nav_frame, text="Check In", style="Nav.TButton", command=Open_Return_BookFrame)
+        nav_button2 = ttk.Button(nav_frame, text="Check Out", style="Nav.TButton", command=Open_Return_BookFrame)
         nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         root.mainloop()
