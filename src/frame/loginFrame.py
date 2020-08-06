@@ -43,8 +43,8 @@ class LoginFrame:
                 if ((Username.get() != None) and (not(reader.equals("",Username.get()))) and (Password.get() != None) and (not(reader.equals("",Password.get())))):
                     whether_login = rTools.ReaderLogin(reader.getIdReader(), reader.getPassword())
                     if(whether_login == True):
-                        idReader = reader.getIdReader()
-                        nameReader = (rTools.ReaderDataId(reader.getIdReader())[0][1])
+                        self.idReader = reader.getIdReader()
+                        self.nameReader = (rTools.ReaderDataId(reader.getIdReader())[0][1])
 
                         CloseFrame()
                         frame = Login_ReaderFrame()
@@ -61,7 +61,7 @@ class LoginFrame:
                 if ((Username.get() != None) and (not(lib.equals("", Username.get()))) and (Password.get() != None) and (not(lib.equals("", Password.get())))):
                     whether_login = libTools.LibrarianLogin(lib.getNameUser(),lib.getPassword())
                     if (whether_login == True):
-                        nameUser = lib.getNameUser()
+                        self.nameUser = lib.getNameUser()
 
                         CloseFrame()
                         frame = Login_LibrarianFrame()

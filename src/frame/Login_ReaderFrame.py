@@ -311,7 +311,6 @@ class Search_BookFrame:
         style.configure("Content.TLabel", foreground="black", background="LightSkyBlue2")
         style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
         style.configure("Treeview.Heading", font=("Cascadia Code SemiBold", 9))
-        style.configure("Treeview.Heading", font=("Cascadia Code SemiBold", 9))
 
         title_frame = ttk.Frame(root)
         title_frame.place(relwidth=1, relheight=0.2)
