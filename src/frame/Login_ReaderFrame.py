@@ -214,11 +214,11 @@ class Search_BookFrame:
 
         def show_data():
             heading = ttk.Treeview(content)
-            
+
             #Creating Columns
             heading['columns'] = ("Column 2", "Column 3","Column 4", "Column 5", "Column 6", "Column 7")
-            heading.column("#0", width=10, minwidth=10, anchor=CENTER)
-            heading.column("Column 2", width=50, minwidth=50, anchor=CENTER)
+            heading.column("#0", width=5, minwidth=5, anchor=CENTER)
+            heading.column("Column 2", width=60, minwidth=60, anchor=CENTER)
             heading.column("Column 3", width=2, minwidth=2, anchor=CENTER)
             heading.column("Column 4", width=2, minwidth=2, anchor=CENTER)
             heading.column("Column 5", width=10, minwidth=10, anchor=CENTER)
@@ -247,7 +247,9 @@ class Search_BookFrame:
                     whetherInStock = "Yes"
                 else :
                     whetherInStock = "No"
-                heading.insert("",row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(),"%d" % temp.getPrice(),"%s" % temp.getType(),"%s" % temp.getAuthor(),"%s" % temp.getPublisher(),"%s" % whetherInStock) )
+                heading.insert("",row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(),"%d" % temp.getPrice(),"%s" % temp.getType(),"%s" % temp.getAuthor(),"%s" % temp.getPublisher(),"%s" % whetherInStock), tags=('Data',))
+            
+            heading.tag_configure('Data', font=("Cascadia Code SemiBold", 9))
 
             heading.pack(side=TOP,fill=X)
 
@@ -306,7 +308,9 @@ class Search_BookFrame:
         style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
         style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
         style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        style.configure("Content.TLabel", foreground="black", background="LightSkyBlue2")
         style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
+        style.configure("Treeview.Heading", font=("Cascadia Code SemiBold", 9))
         style.configure("Treeview.Heading", font=("Cascadia Code SemiBold", 9))
 
         title_frame = ttk.Frame(root)
@@ -324,10 +328,22 @@ class Search_BookFrame:
         content_frame = ttk.Frame(root, style="Content.TFrame")
         content_frame.place(relx=0.3, rely=0.2, relwidth=0.7, relheight=0.8)
 
+        search_label = ttk.Label(content_frame, text="Book Name Searching",font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        search_label.place(relx=0.3)
+
+        search_bar = ttk.Entry(content_frame, font=("Cascadia Code", 16))
+        search_bar.place(relx=0.1, rely=0.15, relwidth=0.6)
+
+        search_button = ttk.Button(content_frame, text="Search", style="Nav.TButton")
+        search_button.place(relx=0.75 , rely=0.15, relwidth=0.149)
+
         content = ttk.Frame(content_frame)
-        content.place(relx=0.1, rely=0.2, relwidth=0.8, relheight=0.6)
+        content.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
 
         show_data()
+
+        borrow_button = ttk.Button(content_frame, text="Borrow", style="Nav.TButton")
+        borrow_button.place(relx=0.65, rely = 0.85)
 
         nav_frame = ttk.Frame(root, style="Nav.TFrame")
         nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
