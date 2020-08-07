@@ -11,11 +11,6 @@ from ..model.Book import *
 from ..sqlTools.BookTools import *
 from ..sqlTools.BorrowTools import *
 
-import sys
-# Cancel the Circular Import and get back to last module
-reload(sys.modules["src.frame.loginFrame"])
-from ..frame.loginFrame import *
-
 class Login_ReaderFrame:
 
     def Open_Search_BookFrame(self):
@@ -28,7 +23,7 @@ class Login_ReaderFrame:
 
     def Logout(self):
         self.CloseFrame()
-        self.frame = LoginFrame()
+        self.frame = self.LoginFrame
         self.frame.loginFrame()
 
     def CloseFrame(self):
@@ -127,13 +122,13 @@ class Return_BookFrame:
 
     def Logout(self):
         self.CloseFrame()
-        self.frame = LoginFrame()
+        self.frame = self.LoginFrame
         self.frame.loginFrame()
 
     def CloseFrame(self):
         self.root.destroy()
 
-    def __init__(self):
+    def __init__(self, LoginFrame):
 
         self.LoginFrame = LoginFrame
 
@@ -192,7 +187,7 @@ class Return_BookFrame:
         self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
         self.content_frame.place(relx=0.3, rely=0.2, relwidth=0.7, relheight=0.8)
 
-        self.nav_frame = ttk.Frame(root, style="Nav.TFrame")
+        self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
@@ -220,7 +215,7 @@ class Search_BookFrame:
 
     def Logout(self):
         self.CloseFrame()
-        self.frame = LoginFrame()
+        self.frame = self.LoginFrame
         self.frame.loginFrame()
 
 

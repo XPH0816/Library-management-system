@@ -5,6 +5,12 @@ from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
 class Login_LibrarianFrame:
+
+    def Logout(self):
+        self.CloseFrame()
+        self.frame = self.LoginFrame
+        self.frame.loginFrame()
+    
     def CloseFrame(self):
         self.root.destroy()
 
@@ -32,7 +38,7 @@ class Login_LibrarianFrame:
         self.x2 = self.x * (1.1/6)
         self.y2 = self.y * (1/12)
 
-        self.root.geometry("%dx%d+%d+%d" % (x1, y1, x2, y2))
+        self.root.geometry("%dx%d+%d+%d" % (self.x1, self.y1, self.x2, self.y2))
         self.root.resizable(False, False)
 
         #Easy for configure within attribute
@@ -58,7 +64,7 @@ class Login_LibrarianFrame:
         self.title_text = ttk.Label(self.text_frame,text="Library Management System",font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
         self.title_text.place(relx=0.05, rely=0.4)
 
-        self.logout_button = ttk.Button(self.title_frame,text="Logout", style="Logout.TButton")
+        self.logout_button = ttk.Button(self.title_frame,text="Logout", style="Logout.TButton", command=self.Logout)
         self.logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
         self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
@@ -73,7 +79,7 @@ class Login_LibrarianFrame:
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        self.Nav_label = Canvas(nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
+        self.Nav_label = Canvas(self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
