@@ -20,22 +20,24 @@ class Login_ReaderFrame:
 
     def Open_Search_BookFrame(self):
         self.CloseFrame()
-        self.frame = Search_BookFrame()
+        self.frame = Search_BookFrame(self.LoginFrame)
 
     def Open_Return_BookFrame(self):
         self.CloseFrame()
-        self.frame = Return_BookFrame()
+        self.frame = Return_BookFrame(self.LoginFrame)
 
     def Logout(self):
         self.CloseFrame()
-        self.frame = self.LoginFrame()
+        self.frame = LoginFrame()
         self.frame.loginFrame()
 
     def CloseFrame(self):
         self.root.destroy()
 
 
-    def __init__(self):
+    def __init__(self, LoginFrame):
+
+        self.LoginFrame = LoginFrame
             
         self.root = ThemedTk(theme="equilux")
 
@@ -117,11 +119,11 @@ class Return_BookFrame:
 
     def Open_Search_BookFrame(self):
         self.CloseFrame()
-        self.frame = Search_BookFrame()
+        self.frame = Search_BookFrame(self.LoginFrame)
 
     def Open_Return_BookFrame(self):
         self.CloseFrame()
-        self.frame = Return_BookFrame()
+        self.frame = Return_BookFrame(self.LoginFrame)
 
     def Logout(self):
         self.CloseFrame()
@@ -132,6 +134,8 @@ class Return_BookFrame:
         self.root.destroy()
 
     def __init__(self):
+
+        self.LoginFrame = LoginFrame
 
         self.root = ThemedTk(theme="equilux")
 
@@ -222,14 +226,13 @@ class Search_BookFrame:
 
     def Open_Return_BookFrame(self):
         self.CloseFrame()
-        self.frame = Return_BookFrame()
+        self.frame = Return_BookFrame(self.LoginFrame)
 
     def do_borrow_book(self):
         item = None
         for item in self.heading.selection():
-            self.item_text = self.heading.item(item, "text")
             self.check_value = self.heading.item(item, "values")[5]
-            self.idbook = self.heading.item(item, "values")[0]
+            self.idbook = self.heading.item(item, "text")
 
         if item == None:
             messagebox.showwarning("Please Choose A Book", "Please Choose A Book")
@@ -237,16 +240,19 @@ class Search_BookFrame:
             messagebox.showwarning("Book Has been Borrowed", "The Choosen Book Has been Borrowed")
         else:
             borrowtools = BorrowTools()
-            self.idReader = LoginFrame.idReader
+            self.idReader = self.LoginFrame.idReader
             i = borrowtools.BorrowBook(self.idReader, self.idbook)
             if i == 1:
                 messagebox.showinfo("Successfully borrowed", "Successfully borrowed")
             else:
                 messagebox.showinfo("Failed To Borrow", "Failed To Borrow")
 
+        self.heading.destroy()
+        self.show_data()
+
     def Open_Search_BookFrame(self):
         self.CloseFrame()
-        self.frame = Search_BookFrame()
+        self.frame = Search_BookFrame(self.LoginFrame)
 
     def show_data(self):
         self.heading = ttk.Treeview(self.content)
@@ -288,7 +294,9 @@ class Search_BookFrame:
 
         self.heading.pack(side=TOP, fill=X)
 
-    def __init__(self):
+    def __init__(self, LoginFrame):
+
+        self.LoginFrame = LoginFrame
 
         self.root = ThemedTk(theme="equilux")
 

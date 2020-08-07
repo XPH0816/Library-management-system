@@ -94,7 +94,7 @@ class BorrowTools:
         db = DatabaseTools()
         conn = db.getConn()
         try :
-            sql = "insert into borrow (idReader,idbook,lendDate,dueDate,overtime)values(%s,%s,CURRENT_DATE(),DATE_ADD(CURRENT_DATE(),INTERVAL 2 MONTH),'否')"
+            sql = "insert into borrow (idReader,idbook,lendDate,dueDate,overtime) values (%s,%s,CURRENT_DATE(),DATE_ADD(CURRENT_DATE(),INTERVAL 2 MONTH),'否')"
             answer = (str(idReader),str(idBook))
 
             mycursor = conn.cursor()
