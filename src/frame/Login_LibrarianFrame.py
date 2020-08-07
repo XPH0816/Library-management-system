@@ -5,88 +5,90 @@ from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
 class Login_LibrarianFrame:
-    def __init__(self):
+    def CloseFrame(self):
+        self.root.destroy()
+
+    def __init__(self, LoginFrame):
+
+        self.LoginFrame =  LoginFrame
         
-        def CloseFrame():
-            root.destroy()
-        
-        root = ThemedTk(theme="equilux")
+        self.root = ThemedTk(theme="equilux")
 
         #Setting the Title
-        root.title("Library Management System")
+        self.root.title("Library Management System")
 
         #Setting the icon
-        root.iconbitmap('src\\picture\\library.ico')
+        self.root.iconbitmap('src\\picture\\library.ico')
 
         #Get the screen resolution
-        x = root.winfo_screenwidth()
-        y = root.winfo_screenheight()
+        self.x = self.root.winfo_screenwidth()
+        self.y = self.root.winfo_screenheight()
 
         #Get the value for windows size
-        x1 = x * (13/20)
-        y1 = y * (0.81)
+        self.x1 = self.x * (13/20)
+        self.y1 = self.y * (0.81)
 
         #Get the value for Starting point for windows
-        x2 = x * (1.1/6)
-        y2 = y * (1/12)
+        self.x2 = self.x * (1.1/6)
+        self.y2 = self.y * (1/12)
 
-        root.geometry("%dx%d+%d+%d" % (x1, y1, x2, y2))
-        root.resizable(False, False)
+        self.root.geometry("%dx%d+%d+%d" % (x1, y1, x2, y2))
+        self.root.resizable(False, False)
 
         #Easy for configure within attribute
-        x1 = int(x1)
-        y1 = int(y1)
+        self.x1 = int(self.x1)
+        self.y1 = int(self.y1)
 
-        x_nav = int(x1*0.3)
-        y_nav = int(y1*0.8)
+        self.x_nav = int(self.x1*0.3)
+        self.y_nav = int(self.y1*0.8)
 
-        style = ttk.Style()
-        style.configure("Title.TLabel", foreground="snow")
-        style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
-        style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
-        style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
-        style.configure("Nav.TFrame",foreground="black", background="SeaGreen1")
+        self.style = ttk.Style()
+        self.style.configure("Title.TLabel", foreground="snow")
+        self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
+        self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
+        self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Nav.TFrame",foreground="black", background="SeaGreen1")
 
-        title_frame = ttk.Frame(root)
-        title_frame.place(relwidth=1, relheight=0.2)
+        self.title_frame = ttk.Frame(self.root)
+        self.title_frame.place(relwidth=1, relheight=0.2)
 
-        text_frame = ttk.Frame(title_frame)
-        text_frame.place(relx=0.1,rely=0.5, relwidth=0.4, relheight=0.5)
+        self.text_frame = ttk.Frame(self.title_frame)
+        self.text_frame.place(relx=0.1,rely=0.5, relwidth=0.4, relheight=0.5)
 
-        title_text = ttk.Label(text_frame,text="Library Management System",font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
-        title_text.place(relx=0.05,rely=0.4)
+        self.title_text = ttk.Label(self.text_frame,text="Library Management System",font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
+        self.title_text.place(relx=0.05, rely=0.4)
 
-        logout_button = ttk.Button(title_frame,text="Logout", style="Logout.TButton")
-        logout_button.place(relx=0.78,rely=0.58,relwidth=0.15)
+        self.logout_button = ttk.Button(self.title_frame,text="Logout", style="Logout.TButton")
+        self.logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
-        content_frame = ttk.Frame(root, style="Content.TFrame")
-        content_frame.place(relx=0.3, rely=0.2, relwidth=1, relheight=0.8)
+        self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
+        self.content_frame.place(relx=0.3, rely=0.2, relwidth=1, relheight=0.8)
 
-        nav_frame = ttk.Frame(root, style="Nav.TFrame")
-        nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
+        self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
+        self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
-        Nav_image = Image.open("src\\picture\\Nav.jpg")
-        Nav_image = Nav_image.resize((x_nav, y_nav), Image.ANTIALIAS)
-        Nav_image = ImageTk.PhotoImage(Nav_image)
+        self.Nav_image = Image.open("src\\picture\\Nav.jpg")
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        Nav_label = Canvas(nav_frame, width=x_nav, height=y_nav, highlightthickness=0)
-        Nav_label.pack()
-        Nav_label.create_image(0, 0, anchor=NW, image=Nav_image)
+        self.Nav_label = Canvas(nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
+        self.Nav_label.pack()
+        self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        nav_button1 = ttk.Button(nav_frame, text="User Register", style="Nav.TButton")
-        nav_button1.place(relx=0.25,rely=0.05,relwidth=0.5)
-        nav_button2 = ttk.Button(nav_frame, text="Book Regsiter", style="Nav.TButton")
-        nav_button2.place(relx=0.25, rely=0.25, relwidth=0.5)
-        nav_button3 = ttk.Button(nav_frame, text="User Manage", style="Nav.TButton")
-        nav_button3.place(relx=0.25, rely=0.45, relwidth=0.5)
-        nav_button4 = ttk.Button(nav_frame, text="Book Manage", style="Nav.TButton")
-        nav_button4.place(relx=0.25, rely=0.65, relwidth=0.5)
-        nav_button5 = ttk.Button(nav_frame, text="Lending Manage", style="Nav.TButton")
-        nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register", style="Nav.TButton")
+        self.nav_button1.place(relx=0.25,rely=0.05,relwidth=0.5)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Book Regsiter", style="Nav.TButton")
+        self.nav_button2.place(relx=0.25, rely=0.25, relwidth=0.5)
+        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage", style="Nav.TButton")
+        self.nav_button3.place(relx=0.25, rely=0.45, relwidth=0.5)
+        self.nav_button4 = ttk.Button(self.nav_frame, text="Book Manage", style="Nav.TButton")
+        self.nav_button4.place(relx=0.25, rely=0.65, relwidth=0.5)
+        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage", style="Nav.TButton")
+        self.nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
 
-        root.mainloop()
+        self.root.mainloop()
 
 if __name__ == "__main__":
     frame = Login_LibrarianFrame()
