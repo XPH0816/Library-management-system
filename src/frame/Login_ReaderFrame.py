@@ -102,9 +102,9 @@ class Login_ReaderFrame:
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        self.nav_button1 = ttk.Button(self.nav_frame, text="Check In", style="Nav.TButton", command=self.Open_Search_BookFrame)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="Check Out", style="Nav.TButton", command=self.Open_Search_BookFrame)
         self.nav_button1.place(relx=0.275,rely=0.2,relwidth=0.45)
-        self.nav_button2 = ttk.Button(self.nav_frame, text="Check Out", style="Nav.TButton", command=self.Open_Return_BookFrame)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Check In", style="Nav.TButton", command=self.Open_Return_BookFrame)
         self.nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         self.root.mainloop()
@@ -200,9 +200,9 @@ class Return_BookFrame:
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        self.nav_button1 = ttk.Button(self.nav_frame, text="Check In", style="Nav.TButton", command=self.Open_Search_BookFrame)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="Check Out", style="Nav.TButton", command=self.Open_Search_BookFrame)
         self.nav_button1.place(relx=0.275, rely=0.2, relwidth=0.45)
-        self.nav_button2 = ttk.Button(self.nav_frame, text="Check Out", style="Nav.TButton", command=self.Open_Return_BookFrame)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Check In", style="Nav.TButton", command=self.Open_Return_BookFrame)
         self.nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         self.root.mainloop()
@@ -380,9 +380,9 @@ class Search_BookFrame:
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        self.nav_button1 = ttk.Button(self.nav_frame, text="Check In", style="Nav.TButton", command=self.Open_Search_BookFrame)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="Check Out", style="Nav.TButton", command=self.Open_Search_BookFrame)
         self.nav_button1.place(relx=0.275, rely=0.2, relwidth=0.45)
-        self.nav_button2 = ttk.Button(self.nav_frame, text="Check Out", style="Nav.TButton", command=self.Open_Return_BookFrame)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Check In", style="Nav.TButton", command=self.Open_Return_BookFrame)
         self.nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         self.root.mainloop()
