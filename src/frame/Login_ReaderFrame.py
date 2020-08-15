@@ -197,6 +197,12 @@ class Return_BookFrame:
         self.typeLabel = ttk.Label(self.content_frame, text="Post :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
         self.typeLabel.place(relx=0.65, rely=0.08)
 
+        self.sexLabel = ttk.Label(self.content_frame, text="Sex :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.sexLabel.place(relx=0.15,rely=0.16)
+
+        self.passwordLabel = ttk.Label(self.content_frame, text="Password :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.passwordLabel.place(relx=0.65,rely=0.16)
+
         self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
