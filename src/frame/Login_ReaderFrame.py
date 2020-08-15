@@ -189,19 +189,27 @@ class Return_BookFrame:
         self.content_frame.place(relx=0.3, rely=0.2, relwidth=0.7, relheight=0.8)
 
         self.idReaderLabel = ttk.Label(self.content_frame, text="IdReader:", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
-        self.idReaderLabel.place(relx=0.3)
+        self.idReaderLabel.place(relx=0.28)
         
         self.nameReaderLabel = ttk.Label(self.content_frame, text="NameReader:", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
-        self.nameReaderLabel.place(relx=0.15, rely=0.08)
+        self.nameReaderLabel.place(relx=0.08, rely=0.08)
 
         self.typeLabel = ttk.Label(self.content_frame, text="Post :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
-        self.typeLabel.place(relx=0.65, rely=0.08)
+        self.typeLabel.place(relx=0.58, rely=0.08)
 
         self.sexLabel = ttk.Label(self.content_frame, text="Sex :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
-        self.sexLabel.place(relx=0.15,rely=0.16)
+        self.sexLabel.place(relx=0.08, rely=0.16)
 
         self.passwordLabel = ttk.Label(self.content_frame, text="Password :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
-        self.passwordLabel.place(relx=0.65,rely=0.16)
+        self.passwordLabel.place(relx=0.58, rely=0.16)
+
+        self.showidReaderLabel = ttk.Label(self.content_frame, text="", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.showidReaderLabel.place(relx=0.47)
+
+        self.showidReaderLabel.config(text=self.LoginFrame.idReader)
+
+        self.showNameReaderLabel = ttk.Label(self.content_frame, text="a", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.showNameReaderLabel.place(relx=0.3, rely=0.08)
 
         self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
