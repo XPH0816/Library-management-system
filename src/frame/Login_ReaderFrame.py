@@ -170,6 +170,7 @@ class Return_BookFrame:
         self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
         self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
         self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Content.TLabel", foreground="black", background="LightSkyBlue2")
         self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         self.title_frame = ttk.Frame(self.root)
@@ -186,6 +187,15 @@ class Return_BookFrame:
 
         self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
         self.content_frame.place(relx=0.3, rely=0.2, relwidth=0.7, relheight=0.8)
+
+        self.idReaderLabel = ttk.Label(self.content_frame, text="IdReader:", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.idReaderLabel.place(relx=0.3)
+        
+        self.nameReaderLabel = ttk.Label(self.content_frame, text="NameReader:", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.nameReaderLabel.place(relx=0.15, rely=0.08)
+
+        self.typeLabel = ttk.Label(self.content_frame, text="Post :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.typeLabel.place(relx=0.65, rely=0.08)
 
         self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
@@ -222,6 +232,42 @@ class Search_BookFrame:
     def Open_Return_BookFrame(self):
         self.CloseFrame()
         self.frame = Return_BookFrame(self.LoginFrame)
+
+    def do_search_book(self):
+        booktools = BookTools()
+        borrowtools = BorrowTools()
+
+        keyword = ""
+        
+        if ( (self.search_bar.get() != None) and (self.search_bar.get() != "") ):
+            keyword = self.search_bar.get()
+        else :
+            messagebox.showwarning("Enter Book Name","Please Enter The Book Name")
+            return 
+        
+        booklist = booktools.BookDataName(keyword)
+
+        if ( len(booklist) == 0 ):
+            messagebox.showwarning("Cannot Find Book","Cannot Find The Book")
+            return
+        else :
+
+            for row in self.heading.get_children():
+                self.heading.delete(row)
+
+            for new_row in booklist :
+                row_index = booklist.index(new_row) + 1
+                temp = Book()
+                temp.setAll(new_row)
+                whetherInStock = None
+                if(borrowtools.whetherInStock(temp.getIdBook())):
+                    whetherInStock = "Yes"
+                else:
+                    whetherInStock = "No"
+                self.heading.insert("", row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(), "%d" % temp.getPrice(), "%s" % temp.getType(), "%s" % temp.getAuthor(), "%s" % temp.getPublisher(), "%s" % whetherInStock), tags=('Data',))
+                self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 9))
+
+
 
     def do_borrow_book(self):
         item = None
@@ -286,8 +332,13 @@ class Search_BookFrame:
                 whetherInStock = "No"
             self.heading.insert("", row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(), "%d" % temp.getPrice(), "%s" % temp.getType(), "%s" % temp.getAuthor(), "%s" % temp.getPublisher(), "%s" % whetherInStock), tags=('Data',))
             self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 9))
+        
+        self.vsb = ttk.Scrollbar(self.content_frame,orient="vertical", command=self.heading.yview)
+        self.vsb.place(relx=0.9, rely=0.3, relheight=0.45)
 
         self.heading.pack(side=TOP, fill=X)
+
+        self.heading.configure(yscrollcommand=self.vsb.set)
 
     def __init__(self, LoginFrame):
 
@@ -356,11 +407,11 @@ class Search_BookFrame:
         self.search_bar = ttk.Entry(self.content_frame, font=("Cascadia Code", 16))
         self.search_bar.place(relx=0.1, rely=0.15, relwidth=0.6)
 
-        self.search_button = ttk.Button(self.content_frame, text="Search", style="Nav.TButton")
+        self.search_button = ttk.Button(self.content_frame, text="Search", style="Nav.TButton", command=self.do_search_book)
         self.search_button.place(relx=0.75, rely=0.15, relwidth=0.149)
 
         self.content = ttk.Frame(self.content_frame)
-        self.content.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
+        self.content.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.45)
 
         self.show_data()
 
