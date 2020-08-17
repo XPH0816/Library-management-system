@@ -203,13 +203,14 @@ class Return_BookFrame:
         self.passwordLabel = ttk.Label(self.content_frame, text="Password :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
         self.passwordLabel.place(relx=0.58, rely=0.16)
 
-        self.showidReaderLabel = ttk.Label(self.content_frame, text="", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.showidReaderLabel = ttk.Label(self.content_frame, text=self.LoginFrame.idReader, font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
         self.showidReaderLabel.place(relx=0.47)
 
-        self.showidReaderLabel.config(text=self.LoginFrame.idReader)
-
-        self.showNameReaderLabel = ttk.Label(self.content_frame, text="a", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.showNameReaderLabel = ttk.Label(self.content_frame, text="", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
         self.showNameReaderLabel.place(relx=0.3, rely=0.08)
+
+        self.showtypeLabel = ttk.Label(self.content_frame, text="a", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.showtypeLabel.place(relx=0.7, rely=0.08)
 
         self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
