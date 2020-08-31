@@ -219,10 +219,7 @@ class Return_BookFrame:
         self.showPasswordLabel.place(relx=0.79, rely=0.16)
 
         self.content = ttk.Frame(self.content_frame)
-        self.content.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
-
-        self.return_BookButton = ttk.Button(self.content_frame, text="Check In", style="Nav.TButton")
-        self.return_BookButton.place(relx=0.65, rely=0.85)
+        self.content.place(relx=0.1, rely=0.28, relwidth=0.8, relheight=0.45)
 
         self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
