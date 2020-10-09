@@ -8,6 +8,8 @@ from PIL import ImageTk, Image
 from importlib import reload
 
 from ..model.Book import *
+from ..model.Reader import *
+from ..sqlTools.ReaderTools import *
 from ..sqlTools.BookTools import *
 from ..sqlTools.BorrowTools import *
 
@@ -128,6 +130,79 @@ class Return_BookFrame:
     def CloseFrame(self):
         self.root.destroy()
 
+    def do_return_book(self):
+        item = None
+        for item in self.heading.selection():
+            self.idbook = self.heading.item(item, "text")
+
+        if item == None:
+            messagebox.showwarning("Please Choose A Book", "Please Choose A Book")
+        else:
+            borrowtools = BorrowTools()
+            i = borrowtools.ReturnBook(self.idbook)
+            if i == 1:
+                messagebox.showinfo("Successfully Return", "Successfully Return")
+            else:
+                messagebox.showinfo("Failed To Return", "Failed To Return")
+
+        self.heading.destroy()
+        self.show_data()
+
+    def show_data(self):
+        self.heading = ttk.Treeview(self.content)
+
+        #Creating Columns
+        self.heading['columns'] = ("Column 2", "Column 3", "Column 4", "Column 5", "Column 6")
+        self.heading.column("#0", width=5, minwidth=5, anchor=CENTER)
+        self.heading.column("Column 2", width=60, minwidth=60, anchor=CENTER)
+        self.heading.column("Column 3", width=2, minwidth=2, anchor=CENTER)
+        self.heading.column("Column 4", width=2, minwidth=2, anchor=CENTER)
+        self.heading.column("Column 5", width=10, minwidth=10, anchor=CENTER)
+        self.heading.column("Column 6", width=50, minwidth=50, anchor=CENTER)
+
+        self.heading.heading("#0", text="IdBook", anchor=CENTER)
+        self.heading.heading("Column 2", text="Book Name", anchor=CENTER)
+        self.heading.heading("Column 3", text="Price", anchor=CENTER)
+        self.heading.heading("Column 4", text="Type", anchor=CENTER)
+        self.heading.heading("Column 5", text="Author", anchor=CENTER)
+        self.heading.heading("Column 6", text="Publisher", anchor=CENTER)
+
+        readerTools = ReaderTools()
+        reader = Reader()
+
+        borrowTools = BorrowTools()
+
+        if(self.showidReaderLabel["text"] != None and reader.equals("",self.showidReaderLabel["text"])):
+            reader.setIdReader(self.showidReaderLabel["text"])
+        else :
+            messagebox.showwarning("Error in Reading ID Reader","Please make sure you login to this system")
+            return
+
+        readerlist = readerTools.ReaderDataId(reader.getIdReader())
+        booklist = borrowTools.BookData(reader.getIdReader())
+
+        if(len(readerlist) == 0):
+            messagebox.showwarning("Error in ID Reader","Please login with a correct ID Reader")
+        else :
+            for row in readerlist:
+                self.showtypeLabel['text'] = row[2]
+                self.showSexLabel['text'] = row[3]
+                self.showPasswordLabel['text'] = row[4]
+
+            for row in booklist:
+                row_index = booklist.index(row) + 1
+                temp = Book()
+                temp.setAll(row)
+                self.heading.insert("", row_index, text="%s" % temp.getIdBook(), values=("%s" % temp.getNameBook(), "%d" % temp.getPrice(), "%s" % temp.getType(), "%s" % temp.getAuthor(), "%s" % temp.getPublisher()), tags=('Data',))
+                self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 9))
+        
+        self.vsb = ttk.Scrollbar(self.content_frame,orient="vertical", command=self.heading.yview)
+        self.vsb.place(relx=0.9, rely=0.3, relheight=0.45)
+
+        self.heading.pack(side=TOP, fill=X)
+
+        self.heading.configure(yscrollcommand=self.vsb.set)
+
     def __init__(self, LoginFrame):
 
         self.LoginFrame = LoginFrame
@@ -206,7 +281,7 @@ class Return_BookFrame:
         self.showidReaderLabel = ttk.Label(self.content_frame, text=self.LoginFrame.idReader, font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
         self.showidReaderLabel.place(relx=0.47)
 
-        self.showNameReaderLabel = ttk.Label(self.content_frame, text="", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.showNameReaderLabel = ttk.Label(self.content_frame, text=self.LoginFrame.nameReader, font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
         self.showNameReaderLabel.place(relx=0.3, rely=0.08)
 
         self.showtypeLabel = ttk.Label(self.content_frame, text="", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
@@ -219,9 +294,9 @@ class Return_BookFrame:
         self.showPasswordLabel.place(relx=0.79, rely=0.16)
 
         self.content = ttk.Frame(self.content_frame)
-        self.content.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
+        self.content.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.45)
 
-        self.return_BookButton = ttk.Button(self.content_frame, text="Check In", style="Nav.TButton")
+        self.return_BookButton = ttk.Button(self.content_frame, text="Check In", style="Nav.TButton",command=self.do_return_book)
         self.return_BookButton.place(relx=0.65, rely=0.85)
 
         self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
@@ -241,6 +316,8 @@ class Return_BookFrame:
         self.nav_button1.place(relx=0.275, rely=0.2, relwidth=0.45)
         self.nav_button2 = ttk.Button(self.nav_frame, text="Check In", style="Nav.TButton", command=self.Open_Return_BookFrame)
         self.nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
+
+        self.show_data()
 
         self.root.mainloop()
 
