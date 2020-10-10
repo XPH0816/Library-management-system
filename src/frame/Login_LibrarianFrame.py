@@ -190,6 +190,7 @@ class reader_RegisterFrame :
         self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
         self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
         self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Content.TLabel", foreground="black", background="LightSkyBlue2")
         self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         self.title_frame = ttk.Frame(self.root)
@@ -235,6 +236,39 @@ class reader_RegisterFrame :
         self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage",
                                       style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
         self.nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
+
+        self.idReaderLabel = ttk.Label(self.content_frame, text="ID Reader :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.idReaderLabel.place(relx=0.2, rely=0.15)
+
+        self.idReaderEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.idReaderEntry.place(relx=0.37, rely=0.16)
+
+        self.nameReaderLabel = ttk.Label(self.content_frame, text="Name :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.nameReaderLabel.place(relx=0.272, rely=0.25)
+
+        self.nameReaderEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.nameReaderEntry.place(relx=0.37, rely=0.26)
+
+        self.positionLabel = ttk.Label(self.content_frame, text="Position :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.positionLabel.place(relx=0.215, rely=0.35)
+
+        self.positionEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.positionEntry.place(relx=0.37, rely=0.36)
+
+        self.sexLabel = ttk.Label(self.content_frame, text="Sex :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.sexLabel.place(relx=0.285, rely=0.45)
+
+        self.sexEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.sexEntry.place(relx=0.37, rely=0.46)
+
+        self.passwordLabel = ttk.Label(self.content_frame, text="Password :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.passwordLabel.place(relx=0.215, rely=0.55)
+
+        self.passwordEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.passwordEntry.place(relx=0.37, rely=0.56)
+
+        self.registerButton = ttk.Button(self.content_frame, text="Register", style="Nav.TButton")
+        self.registerButton.place(relx=0.3, rely=0.7)
 
         self.root.mainloop()
 
@@ -742,4 +776,9 @@ class Lending_ManagementFrame:
         self.root.mainloop()
 
 if __name__ == "__main__":
-    frame = Login_LibrarianFrame()
+
+    class LoginFrame:
+        def __init__(self):
+            self.nameUser = "root"
+
+    frame = Login_LibrarianFrame(LoginFrame())
