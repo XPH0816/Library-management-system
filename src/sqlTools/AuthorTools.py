@@ -11,7 +11,7 @@ class AuthorTools:
         ls = []
         try:
             sql = "select name,workplace from author where name= %s"
-            answer(str(name),)
+            answer = (str(name),)
 
             mycursor = conn.cursor()
 
