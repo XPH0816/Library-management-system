@@ -336,17 +336,15 @@ class book_RegisterFrame :
 
         self.x_nav = int(self.x1*0.3)
         self.y_nav = int(self.y1*0.8)
-
+        
+        #Setting the ttk Style
         self.style = ttk.Style()
         self.style.configure("Title.TLabel", foreground="snow")
-        self.style.configure("Logout.TButton", font=(
-            "Cascadia Code SemiBold", 14))
-        self.style.configure("Nav.TButton", font=(
-            "Cascadia Code SemiBold", 12))
-        self.style.configure(
-            "Content.TFrame", foreground="black", background="LightSkyBlue2")
-        self.style.configure(
-            "Nav.TFrame", foreground="black", background="SeaGreen1")
+        self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
+        self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
+        self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Content.TLabel", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         self.title_frame = ttk.Frame(self.root)
         self.title_frame.place(relwidth=1, relheight=0.2)
@@ -380,21 +378,55 @@ class book_RegisterFrame :
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register",
-                                      style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register", style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
         self.nav_button1.place(relx=0.25, rely=0.05, relwidth=0.5)
-        self.nav_button2 = ttk.Button(
-            self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
         self.nav_button2.place(relx=0.25, rely=0.25, relwidth=0.5)
-        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage",
-                                      style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
+        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage", style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
         self.nav_button3.place(relx=0.25, rely=0.45, relwidth=0.5)
-        self.nav_button4 = ttk.Button(
-            self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
+        self.nav_button4 = ttk.Button(self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
         self.nav_button4.place(relx=0.25, rely=0.65, relwidth=0.5)
-        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage",
-                                      style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
+        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage", style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
         self.nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
+
+        self.idBookLabel = ttk.Label(self.content_frame, text="Book ID :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.idBookLabel.place(relx=0.23, rely=0.05)
+
+        self.idBookEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.idBookEntry.place(relx=0.37, rely=0.06)
+
+        self.nameBookLabel = ttk.Label(self.content_frame, text="Name :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.nameBookLabel.place(relx=0.273, rely=0.15)
+
+        self.nameBookEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.nameBookEntry.place(relx=0.37, rely=0.16)
+
+        self.priceLabel = ttk.Label(self.content_frame, text="Price :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.priceLabel.place(relx=0.26, rely=0.25)
+
+        self.priceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.priceEntry.place(relx=0.37, rely=0.26)
+
+        self.typeLabel = ttk.Label(self.content_frame, text="Type :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.typeLabel.place(relx=0.274, rely=0.35)
+
+        self.typeEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.typeEntry.place(relx=0.37, rely=0.36)
+
+        self.authorLabel = ttk.Label(self.content_frame, text="Author :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.authorLabel.place(relx=0.092, rely=0.45)
+
+        self.authorEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.authorEntry.place(relx=0.21, rely=0.46, relwidth=0.15)
+
+        self.publisherLabel = ttk.Label(self.content_frame, text="Publisher :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.publisherLabel.place(relx=0.05, rely=0.55)
+
+        self.publisherEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.publisherEntry.place(relx=0.21 , rely=0.56, relwidth=0.15)
+
+        self.registerButton = ttk.Button(self.content_frame, text="Register", style="Nav.TButton")
+        self.registerButton.place(relx=0.3, rely=0.9)
 
         self.root.mainloop()
 
