@@ -1,6 +1,7 @@
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
+from tkinter import font
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
@@ -368,13 +369,11 @@ class book_RegisterFrame :
 
         #Resize the Image
         self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize(
-            (self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        self.Nav_label = Canvas(
-            self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
+        self.Nav_label = Canvas(self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
@@ -414,19 +413,31 @@ class book_RegisterFrame :
         self.typeEntry.place(relx=0.37, rely=0.36)
 
         self.authorLabel = ttk.Label(self.content_frame, text="Author :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
-        self.authorLabel.place(relx=0.092, rely=0.45)
+        self.authorLabel.place(relx=0.092, rely=0.5)
 
         self.authorEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
-        self.authorEntry.place(relx=0.21, rely=0.46, relwidth=0.15)
+        self.authorEntry.place(relx=0.21, rely=0.51, relwidth=0.15)
+
+        self.workplaceLabel = ttk.Label(self.content_frame, text="Workplace :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.workplaceLabel.place(relx=0.38, rely=0.5)
+
+        self.workplaceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
+        self.workplaceEntry.place(relx=0.54, rely=0.51, relwidth=0.15)
 
         self.publisherLabel = ttk.Label(self.content_frame, text="Publisher :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
-        self.publisherLabel.place(relx=0.05, rely=0.55)
+        self.publisherLabel.place(relx=0.05, rely=0.65)
 
         self.publisherEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
-        self.publisherEntry.place(relx=0.21 , rely=0.56, relwidth=0.15)
+        self.publisherEntry.place(relx=0.21 , rely=0.66, relwidth=0.15)
+
+        self.addressLabel = ttk.Label(self.content_frame, text="Address :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.addressLabel.place(relx=0.408, rely=0.65)
+
+        self.addressEntry = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 12))
+        self.addressEntry.place(relx=0.54, rely=0.66, relwidth=0.15)
 
         self.registerButton = ttk.Button(self.content_frame, text="Register", style="Nav.TButton")
-        self.registerButton.place(relx=0.3, rely=0.9)
+        self.registerButton.place(relx=0.35, rely=0.8)
 
         self.root.mainloop()
 
@@ -484,8 +495,7 @@ class Reader_ManagementFrame:
         self.x2 = self.x * (1.1/6)
         self.y2 = self.y * (1/12)
 
-        self.root.geometry("%dx%d+%d+%d" %
-                           (self.x1, self.y1, self.x2, self.y2))
+        self.root.geometry("%dx%d+%d+%d" % (self.x1, self.y1, self.x2, self.y2))
         self.root.resizable(False, False)
 
         #Easy for configure within attribute
@@ -497,14 +507,10 @@ class Reader_ManagementFrame:
 
         self.style = ttk.Style()
         self.style.configure("Title.TLabel", foreground="snow")
-        self.style.configure("Logout.TButton", font=(
-            "Cascadia Code SemiBold", 14))
-        self.style.configure("Nav.TButton", font=(
-            "Cascadia Code SemiBold", 12))
-        self.style.configure(
-            "Content.TFrame", foreground="black", background="LightSkyBlue2")
-        self.style.configure(
-            "Nav.TFrame", foreground="black", background="SeaGreen1")
+        self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
+        self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
+        self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         self.title_frame = ttk.Frame(self.root)
         self.title_frame.place(relwidth=1, relheight=0.2)
@@ -512,12 +518,10 @@ class Reader_ManagementFrame:
         self.text_frame = ttk.Frame(self.title_frame)
         self.text_frame.place(relx=0.1, rely=0.5, relwidth=0.4, relheight=0.5)
 
-        self.title_text = ttk.Label(self.text_frame, text="Library Management System", font=(
-            "Cascadia Code SemiBold", 18), style="Title.TLabel")
+        self.title_text = ttk.Label(self.text_frame, text="Library Management System", font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
         self.title_text.place(relx=0.05, rely=0.4)
 
-        self.logout_button = ttk.Button(
-            self.title_frame, text="Logout", style="Logout.TButton", command=self.Logout)
+        self.logout_button = ttk.Button(self.title_frame, text="Logout", style="Logout.TButton", command=self.Logout)
         self.logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
         self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
@@ -528,31 +532,34 @@ class Reader_ManagementFrame:
 
         #Resize the Image
         self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize(
-            (self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        self.Nav_label = Canvas(
-            self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
+        self.Nav_label = Canvas(self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register",
-                                      style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register", style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
         self.nav_button1.place(relx=0.25, rely=0.05, relwidth=0.5)
-        self.nav_button2 = ttk.Button(
-            self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
         self.nav_button2.place(relx=0.25, rely=0.25, relwidth=0.5)
-        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage",
-                                      style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
+        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage", style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
         self.nav_button3.place(relx=0.25, rely=0.45, relwidth=0.5)
-        self.nav_button4 = ttk.Button(
-            self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
+        self.nav_button4 = ttk.Button(self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
         self.nav_button4.place(relx=0.25, rely=0.65, relwidth=0.5)
-        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage",
-                                      style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
+        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage", style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
         self.nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
+
+        self.content = ttk.Frame(self.content_frame)
+        self.content.place(relx=0.05, rely=0.1, relwidth=0.6, relheight=0.65)
+
+        self.updateButton = ttk.Button(self.content_frame, text="Update", style="Nav.TButton")
+        self.updateButton.place(relx=0.15, rely=0.8)
+
+        self.deleteButton = ttk.Button(self.content_frame, text="Delete", style="Nav.TButton")
+        self.deleteButton.place(relx=0.45, rely=0.8)
+        
         self.root.mainloop()
 
 class Book_ManegementFrame:
@@ -602,12 +609,12 @@ class Book_ManegementFrame:
         self.y = self.root.winfo_screenheight()
 
         #Get the value for windows size
-        self.x1 = self.x * (13/20)
-        self.y1 = self.y * (0.81)
+        self.x1 = self.x * (17/20)
+        self.y1 = self.y * (0.85)
 
         #Get the value for Starting point for windows
-        self.x2 = self.x * (1.1/6)
-        self.y2 = self.y * (1/12)
+        self.x2 = self.x * (1.1/15)
+        self.y2 = self.y * (1/15)
 
         self.root.geometry("%dx%d+%d+%d" %
                            (self.x1, self.y1, self.x2, self.y2))
@@ -620,16 +627,18 @@ class Book_ManegementFrame:
         self.x_nav = int(self.x1*0.3)
         self.y_nav = int(self.y1*0.8)
 
+        #Setting Radio Button Variable
+        self.var = IntVar() # 1 for Book ID, 2 for Book Name
+
         self.style = ttk.Style()
         self.style.configure("Title.TLabel", foreground="snow")
-        self.style.configure("Logout.TButton", font=(
-            "Cascadia Code SemiBold", 14))
-        self.style.configure("Nav.TButton", font=(
-            "Cascadia Code SemiBold", 12))
-        self.style.configure(
-            "Content.TFrame", foreground="black", background="LightSkyBlue2")
-        self.style.configure(
-            "Nav.TFrame", foreground="black", background="SeaGreen1")
+        self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
+        self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
+        self.style.configure("Content.TButton", font=("Cascadia Code SemiBold", 14))
+        self.style.configure("Content.TButton", font=("Cascadia Code SemiBold", 14))
+        self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Content.TRadiobutton", font=("Cascadia Code", 14))
+        self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         self.title_frame = ttk.Frame(self.root)
         self.title_frame.place(relwidth=1, relheight=0.2)
@@ -637,12 +646,10 @@ class Book_ManegementFrame:
         self.text_frame = ttk.Frame(self.title_frame)
         self.text_frame.place(relx=0.1, rely=0.5, relwidth=0.4, relheight=0.5)
 
-        self.title_text = ttk.Label(self.text_frame, text="Library Management System", font=(
-            "Cascadia Code SemiBold", 18), style="Title.TLabel")
+        self.title_text = ttk.Label(self.text_frame, text="Library Management System", font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
         self.title_text.place(relx=0.05, rely=0.4)
 
-        self.logout_button = ttk.Button(
-            self.title_frame, text="Logout", style="Logout.TButton", command=self.Logout)
+        self.logout_button = ttk.Button(self.title_frame, text="Logout", style="Logout.TButton", command=self.Logout)
         self.logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
         self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
@@ -653,31 +660,45 @@ class Book_ManegementFrame:
 
         #Resize the Image
         self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize(
-            (self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        self.Nav_label = Canvas(
-            self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
+        self.Nav_label = Canvas(self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register",
-                                      style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register", style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
         self.nav_button1.place(relx=0.25, rely=0.05, relwidth=0.5)
-        self.nav_button2 = ttk.Button(
-            self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
         self.nav_button2.place(relx=0.25, rely=0.25, relwidth=0.5)
-        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage",
-                                      style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
+        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage", style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
         self.nav_button3.place(relx=0.25, rely=0.45, relwidth=0.5)
-        self.nav_button4 = ttk.Button(
-            self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
+        self.nav_button4 = ttk.Button(self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
         self.nav_button4.place(relx=0.25, rely=0.65, relwidth=0.5)
-        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage",
-                                      style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
+        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage", style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
         self.nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
+
+        self.searchbar = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 18))
+        self.searchbar.place(relx=0.1, rely=0.05, relwidth=0.4)
+
+        self.searchButton = ttk.Button(self.content_frame, text="Search", style="Content.TButton")
+        self.searchButton.place(relx=0.53, rely=0.05)
+
+        self.bookID_radiobutton = ttk.Radiobutton(self.content_frame, text = "Book ID", variable = self.var, value = 1, style="Content.TRadiobutton")
+        self.bookID_radiobutton.place(relx=0.15, rely=0.13)
+
+        self.bookName_radiobutton = ttk.Radiobutton(self.content_frame, text = "Book Name", variable = self.var, value = 2, style="Content.TRadiobutton")
+        self.bookName_radiobutton.place(relx=0.35, rely=0.13)
+
+        self.content = ttk.Frame(self.content_frame)
+        self.content.place(relx=0.05, rely=0.2, relwidth=0.6, relheight=0.6)
+
+        self.updateButton = ttk.Button(self.content_frame, text="Update", style="Content.TButton")
+        self.updateButton.place(relx=0.1, rely=0.85, relwidth=0.15)
+
+        self.deleteButton = ttk.Button(self.content_frame, text="Delete", style="Content.TButton")
+        self.deleteButton.place(relx=0.45, rely=0.85, relwidth=0.15)
 
         self.root.mainloop()
 
@@ -735,8 +756,7 @@ class Lending_ManagementFrame:
         self.x2 = self.x * (1.1/6)
         self.y2 = self.y * (1/12)
 
-        self.root.geometry("%dx%d+%d+%d" %
-                           (self.x1, self.y1, self.x2, self.y2))
+        self.root.geometry("%dx%d+%d+%d" % (self.x1, self.y1, self.x2, self.y2))
         self.root.resizable(False, False)
 
         #Easy for configure within attribute
@@ -748,14 +768,11 @@ class Lending_ManagementFrame:
 
         self.style = ttk.Style()
         self.style.configure("Title.TLabel", foreground="snow")
-        self.style.configure("Logout.TButton", font=(
-            "Cascadia Code SemiBold", 14))
-        self.style.configure("Nav.TButton", font=(
-            "Cascadia Code SemiBold", 12))
-        self.style.configure(
-            "Content.TFrame", foreground="black", background="LightSkyBlue2")
-        self.style.configure(
-            "Nav.TFrame", foreground="black", background="SeaGreen1")
+        self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
+        self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
+        self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Content.TLabel", foreground="black", background="LightSkyBlue2")
+        self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
         self.title_frame = ttk.Frame(self.root)
         self.title_frame.place(relwidth=1, relheight=0.2)
@@ -763,12 +780,10 @@ class Lending_ManagementFrame:
         self.text_frame = ttk.Frame(self.title_frame)
         self.text_frame.place(relx=0.1, rely=0.5, relwidth=0.4, relheight=0.5)
 
-        self.title_text = ttk.Label(self.text_frame, text="Library Management System", font=(
-            "Cascadia Code SemiBold", 18), style="Title.TLabel")
+        self.title_text = ttk.Label(self.text_frame, text="Library Management System", font=("Cascadia Code SemiBold", 18), style="Title.TLabel")
         self.title_text.place(relx=0.05, rely=0.4)
 
-        self.logout_button = ttk.Button(
-            self.title_frame, text="Logout", style="Logout.TButton", command=self.Logout)
+        self.logout_button = ttk.Button(self.title_frame, text="Logout", style="Logout.TButton", command=self.Logout)
         self.logout_button.place(relx=0.78, rely=0.58, relwidth=0.15)
 
         self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
@@ -779,31 +794,60 @@ class Lending_ManagementFrame:
 
         #Resize the Image
         self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize(
-            (self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
-        self.Nav_label = Canvas(
-            self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
+        self.Nav_label = Canvas(self.nav_frame, width=self.x_nav, height=self.y_nav, highlightthickness=0)
         self.Nav_label.pack()
         self.Nav_label.create_image(0, 0, anchor=NW, image=self.Nav_image)
 
-        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register",
-                                      style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
+        self.nav_button1 = ttk.Button(self.nav_frame, text="User Register", style="Nav.TButton", command=self.Open_Reader_RegisterFrame)
         self.nav_button1.place(relx=0.25, rely=0.05, relwidth=0.5)
-        self.nav_button2 = ttk.Button(
-            self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
+        self.nav_button2 = ttk.Button(self.nav_frame, text="Book Regsiter", style="Nav.TButton", command=self.Open_Book_RegisterFrame)
         self.nav_button2.place(relx=0.25, rely=0.25, relwidth=0.5)
-        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage",
-                                      style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
+        self.nav_button3 = ttk.Button(self.nav_frame, text="User Manage", style="Nav.TButton", command=self.Open_Reader_ManagementFrame)
         self.nav_button3.place(relx=0.25, rely=0.45, relwidth=0.5)
-        self.nav_button4 = ttk.Button(
-            self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
+        self.nav_button4 = ttk.Button(self.nav_frame, text="Book Manage", style="Nav.TButton", command=self.Open_Book_ManagementFrame)
         self.nav_button4.place(relx=0.25, rely=0.65, relwidth=0.5)
-        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage",
-                                      style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
+        self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage", style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
         self.nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
+
+        self.idReaderLabel = ttk.Label(self.content_frame, text="ID Reader :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.idReaderLabel.place(relx=0.2, rely=0.01)
+
+        self.idReaderEntry = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 14))
+        self.idReaderEntry.place(relx=0.36, rely=0.02, relwidth=0.15)
+
+        self.nameReaderLabel = ttk.Label(self.content_frame, text="Name :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.nameReaderLabel.place(relx=0.1, rely=0.11)
+
+        self.nameReader = ttk.Label(self.content_frame, text="Name", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.nameReader.place(relx=0.2, rely=0.11)
+
+        self.positionLabel = ttk.Label(self.content_frame, text="Position :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.positionLabel.place(relx=0.35, rely=0.11)
+
+        self.position = ttk.Label(self.content_frame, text="Position", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.position.place(relx=0.5,rely=0.11)
+
+        self.genderLabel = ttk.Label(self.content_frame, text="Gender :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.genderLabel.place(relx=0.072, rely=0.21)
+
+        self.gender = ttk.Label(self.content_frame, text="Gender", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.gender.place(relx=0.2, rely=0.21)
+
+        self.passwordLabel = ttk.Label(self.content_frame, text="Password :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.passwordLabel.place(relx=0.35, rely=0.21)
+
+        self.password = ttk.Label(self.content_frame, text="Password", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
+        self.password.place(relx=0.5, rely=0.21)
+
+        self.content = ttk.Frame(self.content_frame)
+        self.content.place(relx=0.05, rely=0.35, relwidth=0.6, relheight=0.45)
+
+        self.inquireButton = ttk.Button(self.content_frame, text="Inquire", style="Nav.TButton")
+        self.inquireButton.place(relx=0.45, rely=0.85)
 
         self.root.mainloop()
 
