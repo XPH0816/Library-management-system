@@ -1,9 +1,7 @@
-from os import stat
 from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
 from tkinter import messagebox
-from tkinter.messagebox import showinfo
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
@@ -1184,12 +1182,12 @@ class UpdateBook_Frame :
         self.y = self.root.winfo_screenheight()
 
         #Get the value for windows size
-        self.x1 = self.x * (2/9)
-        self.y1 = self.y * (7/11)
+        self.x1 = self.x * (4/9)
+        self.y1 = self.y * (5/11)
 
         #Get the value for Starting point for windows
-        self.x2 = self.x * (2/5)
-        self.y2 = self.y * (1/7)
+        self.x2 = self.x * (3/11)
+        self.y2 = self.y * (2/9)
 
         self.root.geometry("%dx%d+%d+%d" % (self.x1, self.y1, self.x2, self.y2))
         self.root.resizable(False, False)
@@ -1217,63 +1215,56 @@ class UpdateBook_Frame :
         self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
         self.content_frame.place(relwidth=1, relheight=1)
 
-        self.idBookLabel = ttk.Label(self.content_frame, text="Book ID :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.idBookLabel.place(relx=0.23, rely=0.05)
+        self.idBookLabel = ttk.Label(self.content_frame, text="Book ID :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.idBookLabel.place(relx=0.3, rely=0.05)
 
-        self.idBookEntry = ttk.Label(self.content_frame, text="%s" % Book_ManegementFrame.idbook, font=("Cascadia Code", 9), style="Content.TLabel")
-        self.idBookEntry.place(relx=0.37, rely=0.06)
+        self.idBookEntry = ttk.Label(self.content_frame, text="%s" % Book_ManegementFrame.idbook, font=("Cascadia Code", 12), style="Content.TLabel")
+        self.idBookEntry.place(relx=0.43, rely=0.05)
 
-        self.nameBookLabel = ttk.Label(self.content_frame, text="Name :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.nameBookLabel.place(relx=0.273, rely=0.15)
+        self.nameBookLabel = ttk.Label(self.content_frame, text="Name :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.nameBookLabel.place(relx=0.34, rely=0.15)
 
-        self.nameBookEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 9), textvariable=self.nameBook)
-        self.nameBookEntry.place(relx=0.37, rely=0.16)
-        self.nameBook.set(Book_ManegementFrame.namebook)
+        self.nameBookEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.nameBook)
+        self.nameBookEntry.place(relx=0.43, rely=0.15)
 
-        self.priceLabel = ttk.Label(self.content_frame, text="Price :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.priceLabel.place(relx=0.26, rely=0.25)
+        self.priceLabel = ttk.Label(self.content_frame, text="Price :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.priceLabel.place(relx=0.327, rely=0.25)
 
-        self.priceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 9), textvariable=self.price)
-        self.priceEntry.place(relx=0.37, rely=0.26)
-        self.price.set(Book_ManegementFrame.price)
+        self.priceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.price)
+        self.priceEntry.place(relx=0.43, rely=0.25)
 
-        self.typeLabel = ttk.Label(self.content_frame, text="Type :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.typeLabel.place(relx=0.274, rely=0.35)
+        self.typeLabel = ttk.Label(self.content_frame, text="Type :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.typeLabel.place(relx=0.34, rely=0.35)
 
-        self.typeEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 9), textvariable=self.type)
-        self.typeEntry.place(relx=0.37, rely=0.36)
-        self.type.set(Book_ManegementFrame.type)
+        self.typeEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.type)
+        self.typeEntry.place(relx=0.43, rely=0.35)
 
-        self.authorLabel = ttk.Label(self.content_frame, text="Author :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.authorLabel.place(relx=0.092, rely=0.5)
+        self.authorLabel = ttk.Label(self.content_frame, text="Author :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.authorLabel.place(relx=0.15, rely=0.45)
 
-        self.authorEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 9), textvariable=self.author)
-        self.authorEntry.place(relx=0.21, rely=0.51, relwidth=0.15)
-        self.author.set(Book_ManegementFrame.author)
+        self.authorEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.author)
+        self.authorEntry.place(relx=0.26, rely=0.45, relwidth=0.2)
 
-        self.workplaceLabel = ttk.Label(self.content_frame, text="Workplace :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.workplaceLabel.place(relx=0.38, rely=0.5)
+        self.workplaceLabel = ttk.Label(self.content_frame, text="Workplace :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.workplaceLabel.place(relx=0.5, rely=0.45)
 
-        self.workplaceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 9), textvariable=self.workplace)
-        self.workplaceEntry.place(relx=0.54, rely=0.51, relwidth=0.15)
-        self.workplace.set(Book_ManegementFrame.workplace)
+        self.workplaceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.workplace)
+        self.workplaceEntry.place(relx=0.65, rely=0.45, relwidth=0.2)
 
-        self.publisherLabel = ttk.Label(self.content_frame, text="Publisher :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.publisherLabel.place(relx=0.05, rely=0.65)
+        self.publisherLabel = ttk.Label(self.content_frame, text="Publisher :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.publisherLabel.place(relx=0.11, rely=0.55)
 
-        self.publisherEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 9), textvariable=self.publisher)
-        self.publisherEntry.place(relx=0.21 , rely=0.66, relwidth=0.15)
-        self.publisher.set(Book_ManegementFrame.publisher)
+        self.publisherEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.publisher)
+        self.publisherEntry.place(relx=0.26, rely=0.55, relwidth=0.2)
 
-        self.addressLabel = ttk.Label(self.content_frame, text="Address :", font=("Cascadia Code SemiBold", 9), style="Content.TLabel")
-        self.addressLabel.place(relx=0.408, rely=0.65)
+        self.addressLabel = ttk.Label(self.content_frame, text="Address :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
+        self.addressLabel.place(relx=0.528, rely=0.55)
 
-        self.addressEntry = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 9), textvariable=self.address)
-        self.addressEntry.place(relx=0.54, rely=0.66, relwidth=0.15)
-        self.address.set(Book_ManegementFrame.address)
+        self.addressEntry = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 12), textvariable=self.address)
+        self.addressEntry.place(relx=0.65, rely=0.55, relwidth=0.2)
 
         self.updateButton = ttk.Button(self.content_frame, text="Update", style="Nav.TButton")
-        self.updateButton.place(relx=0.35, rely=0.8)
+        self.updateButton.place(relx=0.45, rely=0.7)
 
         self.root.mainloop()
 
