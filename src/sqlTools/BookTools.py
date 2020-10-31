@@ -70,6 +70,7 @@ class BookTools:
         conn = db.getConn()
         result_set = None
         book = None
+        ls = []
         try:
             sql = "select idBook,nameBook,price,kind,author,publisher from Book where idBook= %s "
             answer = (str(idBook),)
@@ -88,12 +89,13 @@ class BookTools:
                 book.setType(row[3])
                 book.setAuthor(row[4])
                 book.setPublisher(row[5])
+                ls.append(book.list_return())
 
             mycursor.close()
             conn.close()
         except Exception as e:
             traceback.print_exc()
-        return book.list_return()
+        return ls
 
     def AddBook(self, Book):
         i = 0

@@ -172,7 +172,7 @@ class Return_BookFrame:
 
         borrowTools = BorrowTools()
 
-        if(self.showidReaderLabel["text"] != None and reader.equals("",self.showidReaderLabel["text"])):
+        if(self.showidReaderLabel["text"] != None and self.showidReaderLabel["text"] != ""):
             reader.setIdReader(self.showidReaderLabel["text"])
         else :
             messagebox.showwarning("Error in Reading ID Reader","Please make sure you login to this system")
@@ -421,7 +421,7 @@ class Search_BookFrame:
         self.heading.heading("Column 7", text="Whether In Stock", anchor=CENTER)
 
         bookTools = BookTools()
-        booklist = BookTools().BookData()
+        booklist = bookTools.BookData()
 
         borrowTools = BorrowTools()
 
