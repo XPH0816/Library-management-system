@@ -5,10 +5,10 @@ Developer : XPH0904
 # Project
 This Project is free to use and edit for library
 This Project contains the functions below :
-    1. Reader Management (Use for Add new Reader or Change the Reader infomation)[Category: Librarian]
-    2. Book Management (Use for Add new Book or Change the Book infomation)[Category: Librarian]
-    3. Lending Management (Use for Check in or Check out the Book)[Category: Reader]
-    4. Check Lending Infomation (Use for Checking the Lending Info)[Category: Librarian]
+1. Reader Management (Use for Add new Reader or Change the Reader infomation)[Category: Librarian]
+2. Book Management (Use for Add new Book or Change the Book infomation)[Category: Librarian]
+3. Lending Management (Use for Check in or Check out the Book)[Category: Reader]
+4. Check Lending Infomation (Use for Checking the Lending Info)[Category: Librarian]
 
 # Project Reference
 This Project is refer to the link below :
