@@ -8,6 +8,13 @@ class Reader:
     sex = ""
     password = ""
 
+    def setAll(self, list):
+        self.idReader = list[0]
+        self.nameReader = list[1]
+        self.level = list[2]
+        self.sex = list[3]
+        self.password = list[4]
+
     def getIdReader(self):
         return self.idReader
     

@@ -15,6 +15,9 @@ from ..sqlTools.AuthorTools import *
 from ..sqlTools.BookTools import *
 from ..sqlTools.PublisherTools import *
 
+from ..frame.UpdateBook_Frame import *
+from ..frame.UpdateReader_Frame import *
+
 class Login_LibrarianFrame:
 
     def Logout(self):
@@ -162,6 +165,28 @@ class reader_RegisterFrame :
         self.CloseFrame()
         self.frame = Lending_ManagementFrame(self.LoginFrame)
 
+    def do_InsertReader(self):
+        readerTools = ReaderTools()
+        reader = Reader()
+
+        if self.idReaderEntry != None and self.idReaderEntry != "" and self.nameReaderEntry != None and self.nameReaderEntry != "" and self.positionEntry != None and self.positionEntry != "" and self.sexEntry != None and self.sexEntry != "" and self.passwordEntry != None and self.passwordEntry != "" :
+            reader.setIdReader(self.idReaderEntry.get())
+            reader.setNameReader(self.nameReaderEntry.get())
+            reader.setLevel(self.positionEntry.get())
+            reader.setSex(self.sexEntry.get())
+            reader.setPassword(self.passwordEntry.get())
+            i = readerTools.addReader(reader)
+            if i == 1 :
+                messagebox.showinfo("Successfully Added", "Successfully Added the Reader")
+                return
+            else :
+                messagebox.showinfo("Failed to Add", "Failed to Add the Reader")
+                return
+        else :
+            messagebox.showinfo("Please Enter the Data","Please Fill All the Entry provided")
+            return
+
+
     def __init__(self, LoginFrame):
 
         self.LoginFrame = LoginFrame
@@ -278,7 +303,7 @@ class reader_RegisterFrame :
         self.passwordEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12))
         self.passwordEntry.place(relx=0.37, rely=0.56)
 
-        self.registerButton = ttk.Button(self.content_frame, text="Register", style="Nav.TButton")
+        self.registerButton = ttk.Button(self.content_frame, text="Register", style="Nav.TButton", command=self.do_InsertReader)
         self.registerButton.place(relx=0.3, rely=0.7)
 
         self.root.mainloop()
@@ -312,6 +337,44 @@ class book_RegisterFrame :
     def Open_Lending_ManegementFrame(self):
         self.CloseFrame()
         self.frame = Lending_ManagementFrame(self.LoginFrame)
+
+    def do_InsertBook(self):
+        bookTools = BookTools()
+        book = Book()
+
+        author = Author()
+        authorTools = AuthorTools()
+
+        publisher = Publisher()
+        publisherTools = PublisherTools()
+
+        if self.idBookEntry.get() != None and self.idBookEntry.get() != "" and self.nameBookEntry.get() != None and self.nameBookEntry.get() != "" and self.priceEntry.get() != None and self.priceEntry.get() != "" and self.typeEntry.get() != None and self.typeEntry.get() != "" and self.authorEntry.get() != None and self.authorEntry.get() != "" and self.publisherEntry.get() != None and self.publisherEntry.get() != "" and self.workplaceEntry.get() != None and self.workplaceEntry.get() != "" and self.addressEntry.get() != None and self.addressEntry.get() != "" :
+            book.setIdBook(self.idBookEntry.get())
+            book.setNameBook(self.nameBookEntry.get())
+            book.setPrice(self.priceEntry.get())
+            book.setType(self.typeEntry.get())
+            book.setAuthor(self.authorEntry.get())
+            book.setPublisher(self.publisherEntry.get())
+
+            author.setName(self.authorEntry.get())
+            author.setWorkplace(self.workplaceEntry.get())
+
+            publisher.setName(self.publisherEntry.get())
+            publisher.setAddress(self.addressEntry.get())
+
+            publisherTools.addPublisher(publisher)
+            authorTools.addAuthor(author)
+
+            i = bookTools.AddBook(book)
+
+            if i == 1 :
+                messagebox.showinfo("Successfully Added", "Successfully Added the Book")
+                return
+            else :
+                messagebox.showinfo("Failed to Add","Failed to Add the Book")
+                return
+        else :
+            messagebox.showinfo("Please Enter the Data","Please Fill All the Entry provided")
 
     def __init__(self, LoginFrame):
 
@@ -481,6 +544,124 @@ class Reader_ManagementFrame:
         self.CloseFrame()
         self.frame = Lending_ManagementFrame(self.LoginFrame)
 
+    def show_data(self):
+        self.heading = ttk.Treeview(self.content)
+
+        #Creating Columns
+        self.heading['columns'] = (
+            "Column 2", "Column 3", "Column 4", "Column 5", "Column 6")
+        self.heading.column("#0", width=5, minwidth=5, anchor=CENTER)
+        self.heading.column("Column 2", width=60, minwidth=60, anchor=CENTER)
+        self.heading.column("Column 3", width=2, minwidth=2, anchor=CENTER)
+        self.heading.column("Column 4", width=2, minwidth=2, anchor=CENTER)
+        self.heading.column("Column 5", width=50, minwidth=50, anchor=CENTER)
+
+        self.heading.heading("#0", text="IdReader", anchor=CENTER)
+        self.heading.heading("Column 2", text="Name", anchor=CENTER)
+        self.heading.heading("Column 3", text="Position", anchor=CENTER)
+        self.heading.heading("Column 4", text="Sex", anchor=CENTER)
+        self.heading.heading("Column 5", text="Password", anchor=CENTER)
+
+        readerTools = ReaderTools()
+        readerlist = readerTools.ReaderData()
+
+        for row in readerlist:
+            row_index = readerlist.index(row) + 1
+            temp = Reader()
+            temp.setAll(row)
+            self.heading.insert("", row_index, text="%s" % temp.getIdReader, values=("%s" % temp.getNameReader(), "%s" % temp.getLevel(), "%s" % temp.getSex(), "%s" % temp.getPassword()), tags=('Data',))
+            self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 12))
+
+        self.vsb = ttk.Scrollbar(self.content_frame, orient="vertical", command=self.heading.yview)
+        self.vsb.place(relx=0.65, rely=0.2, relheight=0.6)
+
+        self.heading.pack(side=TOP, fill=X)
+
+        self.heading.configure(yscrollcommand=self.vsb.set)
+
+    def do_search_reader(self):
+        self.heading.destroy()
+        self.vsb.destroy()
+
+        self.heading = ttk.Treeview(self.content)
+
+        #Creating Columns
+        self.heading['columns'] = (
+            "Column 2", "Column 3", "Column 4", "Column 5", "Column 6")
+        self.heading.column("#0", width=5, minwidth=5, anchor=CENTER)
+        self.heading.column("Column 2", width=60, minwidth=60, anchor=CENTER)
+        self.heading.column("Column 3", width=2, minwidth=2, anchor=CENTER)
+        self.heading.column("Column 4", width=2, minwidth=2, anchor=CENTER)
+        self.heading.column("Column 5", width=50, minwidth=50, anchor=CENTER)
+
+        self.heading.heading("#0", text="IdReader", anchor=CENTER)
+        self.heading.heading("Column 2", text="Name", anchor=CENTER)
+        self.heading.heading("Column 3", text="Position", anchor=CENTER)
+        self.heading.heading("Column 4", text="Sex", anchor=CENTER)
+        self.heading.heading("Column 5", text="Password", anchor=CENTER)
+        
+        readerTools = ReaderTools()
+        keyword = None
+
+        if self.searchbar.get() != None and self.searchbar.get() != "":
+            keyword = self.searchbar.get()
+        else :
+            self.show_data()
+            messagebox.showinfo("Empty Search Bar","Please Enter The ID Reader")
+            return
+        
+        readerlist = readerTools.ReaderDataSearch(keyword)
+
+        if len(readerlist) == 0 :
+            messagebox.showinfo("Cant Find the Reader","The ID Reader is not in the List")
+            return
+        else :
+            for row in readerlist:
+                row_index = readerlist.index(row) + 1
+                temp = Reader()
+                temp.setAll(row)
+                self.heading.insert("", row_index, text="%s" % temp.getIdReader, values=("%s" % temp.getNameReader(), "%s" % temp.getLevel(), "%s" % temp.getSex(), "%s" % temp.getPassword()), tags=('Data',))
+                self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 12))
+
+        self.vsb = ttk.Scrollbar(self.content_frame, orient="vertical", command=self.heading.yview)
+        self.vsb.place(relx=0.65, rely=0.2, relheight=0.6)
+
+        self.heading.pack(side=TOP, fill=X)
+
+        self.heading.configure(yscrollcommand=self.vsb.set)
+
+    def updateReader(self):
+        item = None
+        for item in self.heading.selection():
+            self.idreader = self.heading.item(item, "text")
+        
+        if item == None:
+            messagebox.showwarning("Please Select A Reader", "Please Select A Reader")
+            return
+
+        self.updateBook_Frame = UpdateReader_Frame(self)
+
+    def delete_Reader(self):
+        item = None
+        for item in self.heading.selection():
+            self.idreader = self.heading.item(item, "text")
+
+        if item == None:
+            messagebox.showwarning("Please Select A Reader", "Please Select A Reader")
+            return
+        
+        readerTools = ReaderTools()
+        i = readerTools.DeleteReader(self.idreader)
+        if i == 1 :
+            messagebox.showinfo("Successfully deleted", "Successfully deleted the Reader")
+            self.heading.destroy()
+            self.vsb.destroy()
+            self.show_data()
+            return
+        else :
+            messagebox.showinfo("Failed To Delete", "Failed To Delete the Reader")
+            return
+
     def __init__(self, LoginFrame):
 
         self.LoginFrame = LoginFrame
@@ -561,6 +742,12 @@ class Reader_ManagementFrame:
         self.nav_button5 = ttk.Button(self.nav_frame, text="Lending Manage", style="Nav.TButton", command=self.Open_Lending_ManegementFrame)
         self.nav_button5.place(relx=0.25, rely=0.85, relwidth=0.5)
 
+        self.searchbar = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 18))
+        self.searchbar.place(relx=0.1, rely=0.05, relwidth=0.4)
+
+        self.searchButton = ttk.Button(self.content_frame, text="Search", style="Content.TButton", command=self.do_search_book)
+        self.searchButton.place(relx=0.53, rely=0.05)
+
         self.content = ttk.Frame(self.content_frame)
         self.content.place(relx=0.05, rely=0.1, relwidth=0.6, relheight=0.65)
 
@@ -569,6 +756,8 @@ class Reader_ManagementFrame:
 
         self.deleteButton = ttk.Button(self.content_frame, text="Delete", style="Nav.TButton")
         self.deleteButton.place(relx=0.45, rely=0.8)
+
+        self.show_data()
         
         self.root.mainloop()
 
@@ -865,8 +1054,7 @@ class Book_ManegementFrame:
         self.x2 = self.x * (1.1/15)
         self.y2 = self.y * (1/15)
 
-        self.root.geometry("%dx%d+%d+%d" %
-                           (self.x1, self.y1, self.x2, self.y2))
+        self.root.geometry("%dx%d+%d+%d" % (self.x1, self.y1, self.x2, self.y2))
         self.root.resizable(False, False)
 
         #Easy for configure within attribute
@@ -948,7 +1136,7 @@ class Book_ManegementFrame:
         self.updateButton = ttk.Button(self.content_frame, text="Update", style="Content.TButton", command=self.updateBook)
         self.updateButton.place(relx=0.1, rely=0.85, relwidth=0.15)
 
-        self.deleteButton = ttk.Button(self.content_frame, text="Delete", style="Content.TButton")
+        self.deleteButton = ttk.Button(self.content_frame, text="Delete", style="Content.TButton", command=self.delete_Book)
         self.deleteButton.place(relx=0.45, rely=0.85, relwidth=0.15)
 
         self.show_data()
@@ -1130,7 +1318,7 @@ class Lending_ManagementFrame:
         self.idReaderLabel.place(relx=0.2, rely=0.01)
 
         self.idReaderEntry = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 14))
-        self.idReaderEntry.place(relx=0.36, rely=0.02, relwidth=0.15)
+        self.idReaderEntry.place(relx=0.36, rely=0.02, relwidth=0.1)
 
         self.nameReaderLabel = ttk.Label(self.content_frame, text="Name :", font=("Cascadia Code SemiBold", 18), style="Content.TLabel")
         self.nameReaderLabel.place(relx=0.1, rely=0.11)
@@ -1163,114 +1351,6 @@ class Lending_ManagementFrame:
         self.inquireButton.place(relx=0.45, rely=0.85)
 
         self.root.mainloop()
-
-#Needed to Modify
-class UpdateBook_Frame :
-
-    def __init__(self, Book_ManegementFrame):
-
-        self.root = ThemedTk(theme="equilux")
-
-        #Setting the Title
-        self.root.title("Library Management System")
-
-        #Setting the icon
-        self.root.iconbitmap('src\\picture\\library.ico')
-
-        #Get the screen resolution
-        self.x = self.root.winfo_screenwidth()
-        self.y = self.root.winfo_screenheight()
-
-        #Get the value for windows size
-        self.x1 = self.x * (4/9)
-        self.y1 = self.y * (5/11)
-
-        #Get the value for Starting point for windows
-        self.x2 = self.x * (3/11)
-        self.y2 = self.y * (2/9)
-
-        self.root.geometry("%dx%d+%d+%d" % (self.x1, self.y1, self.x2, self.y2))
-        self.root.resizable(False, False)
-
-        #Easy for configure within attribute
-        self.x1 = int(self.x1)
-        self.y1 = int(self.y1)
-
-        #Setting Entry variable
-        self.nameBook = StringVar()
-        self.price = StringVar()
-        self.type = StringVar()
-        self.author = StringVar()
-        self.workplace = StringVar()
-        self.publisher = StringVar()
-        self.address = StringVar()
-
-        self.style = ttk.Style()
-        self.style.configure("Title.TLabel", foreground="snow")
-        self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
-        self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
-        self.style.configure("Content.TLabel", foreground="black", background="LightSkyBlue2")
-        self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
-
-        self.content_frame = ttk.Frame(self.root, style="Content.TFrame")
-        self.content_frame.place(relwidth=1, relheight=1)
-
-        self.idBookLabel = ttk.Label(self.content_frame, text="Book ID :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.idBookLabel.place(relx=0.3, rely=0.05)
-
-        self.idBookEntry = ttk.Label(self.content_frame, text="%s" % Book_ManegementFrame.idbook, font=("Cascadia Code", 12), style="Content.TLabel")
-        self.idBookEntry.place(relx=0.43, rely=0.05)
-
-        self.nameBookLabel = ttk.Label(self.content_frame, text="Name :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.nameBookLabel.place(relx=0.34, rely=0.15)
-
-        self.nameBookEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.nameBook)
-        self.nameBookEntry.place(relx=0.43, rely=0.15)
-
-        self.priceLabel = ttk.Label(self.content_frame, text="Price :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.priceLabel.place(relx=0.327, rely=0.25)
-
-        self.priceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.price)
-        self.priceEntry.place(relx=0.43, rely=0.25)
-
-        self.typeLabel = ttk.Label(self.content_frame, text="Type :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.typeLabel.place(relx=0.34, rely=0.35)
-
-        self.typeEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.type)
-        self.typeEntry.place(relx=0.43, rely=0.35)
-
-        self.authorLabel = ttk.Label(self.content_frame, text="Author :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.authorLabel.place(relx=0.15, rely=0.45)
-
-        self.authorEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.author)
-        self.authorEntry.place(relx=0.26, rely=0.45, relwidth=0.2)
-
-        self.workplaceLabel = ttk.Label(self.content_frame, text="Workplace :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.workplaceLabel.place(relx=0.5, rely=0.45)
-
-        self.workplaceEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.workplace)
-        self.workplaceEntry.place(relx=0.65, rely=0.45, relwidth=0.2)
-
-        self.publisherLabel = ttk.Label(self.content_frame, text="Publisher :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.publisherLabel.place(relx=0.11, rely=0.55)
-
-        self.publisherEntry = ttk.Entry(self.content_frame, font=("Cascadia Code", 12), textvariable=self.publisher)
-        self.publisherEntry.place(relx=0.26, rely=0.55, relwidth=0.2)
-
-        self.addressLabel = ttk.Label(self.content_frame, text="Address :", font=("Cascadia Code SemiBold", 12), style="Content.TLabel")
-        self.addressLabel.place(relx=0.528, rely=0.55)
-
-        self.addressEntry = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 12), textvariable=self.address)
-        self.addressEntry.place(relx=0.65, rely=0.55, relwidth=0.2)
-
-        self.updateButton = ttk.Button(self.content_frame, text="Update", style="Nav.TButton")
-        self.updateButton.place(relx=0.45, rely=0.7)
-
-        self.root.mainloop()
-
-
-
-
 
 if __name__ == "__main__":
 
