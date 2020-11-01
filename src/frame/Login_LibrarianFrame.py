@@ -745,16 +745,16 @@ class Reader_ManagementFrame:
         self.searchbar = ttk.Entry(self.content_frame, font=("Cascadia Code SemiBold", 18))
         self.searchbar.place(relx=0.1, rely=0.05, relwidth=0.4)
 
-        self.searchButton = ttk.Button(self.content_frame, text="Search", style="Content.TButton", command=self.do_search_book)
+        self.searchButton = ttk.Button(self.content_frame, text="Search", style="Content.TButton", command=self.do_search_reader)
         self.searchButton.place(relx=0.53, rely=0.05)
 
         self.content = ttk.Frame(self.content_frame)
         self.content.place(relx=0.05, rely=0.1, relwidth=0.6, relheight=0.65)
 
-        self.updateButton = ttk.Button(self.content_frame, text="Update", style="Nav.TButton")
+        self.updateButton = ttk.Button(self.content_frame, text="Update", style="Nav.TButton", command=self.updateReader)
         self.updateButton.place(relx=0.15, rely=0.8)
 
-        self.deleteButton = ttk.Button(self.content_frame, text="Delete", style="Nav.TButton")
+        self.deleteButton = ttk.Button(self.content_frame, text="Delete", style="Nav.TButton", command=self.delete_Reader)
         self.deleteButton.place(relx=0.45, rely=0.8)
 
         self.show_data()
