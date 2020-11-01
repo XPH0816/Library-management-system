@@ -541,6 +541,3 @@ class Search_BookFrame:
         self.nav_button2.place(relx=0.275, rely=0.6, relwidth=0.45)
 
         self.root.mainloop()
-
-if __name__ == "__main__":
-    frame = Login_ReaderFrame()

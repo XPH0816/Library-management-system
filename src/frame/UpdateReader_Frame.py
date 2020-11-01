@@ -119,12 +119,3 @@ class UpdateReader_Frame:
         self.updateButton.place(relx=0.4, rely=0.8)
 
         self.root.mainloop()
-
-if __name__ == "__main__":
-
-    class LoginFrame:
-        def __init__(self):
-            self.idreader = "001"
-
-    frame = UpdateReader_Frame(LoginFrame())
-

@@ -1351,11 +1351,3 @@ class Lending_ManagementFrame:
         self.inquireButton.place(relx=0.45, rely=0.85)
 
         self.root.mainloop()
-
-if __name__ == "__main__":
-
-    class LoginFrame:
-        def __init__(self):
-            self.nameUser = "root"
-
-    frame = Login_LibrarianFrame(LoginFrame())
