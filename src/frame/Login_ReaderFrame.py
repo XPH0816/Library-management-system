@@ -5,7 +5,7 @@ from tkinter import messagebox
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
-from importlib import reload
+import PIL
 
 from ..model.Book import *
 from ..model.Reader import *

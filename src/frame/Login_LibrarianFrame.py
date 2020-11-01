@@ -5,6 +5,8 @@ from tkinter import messagebox
 from ttkthemes import ThemedTk
 from PIL import ImageTk, Image
 
+import PIL
+
 from ..model.Author import *
 from ..model.Book import *
 from ..model.Reader import *
@@ -108,8 +110,8 @@ class Login_LibrarianFrame:
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
-        self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = PIL.Image.open("src\\picture\\Nav.jpg")
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), PIL.Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
@@ -248,8 +250,8 @@ class reader_RegisterFrame :
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
-        self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = PIL.Image.open("src\\picture\\Nav.jpg")
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), PIL.Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
@@ -441,8 +443,8 @@ class book_RegisterFrame :
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
-        self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = PIL.Image.open("src\\picture\\Nav.jpg")
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), PIL.Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
@@ -569,11 +571,11 @@ class Reader_ManagementFrame:
             row_index = readerlist.index(row) + 1
             temp = Reader()
             temp.setAll(row)
-            self.heading.insert("", row_index, text="%s" % temp.getIdReader, values=("%s" % temp.getNameReader(), "%s" % temp.getLevel(), "%s" % temp.getSex(), "%s" % temp.getPassword()), tags=('Data',))
+            self.heading.insert("", row_index, text="%s" % temp.getIdReader(), values=("%s" % temp.getNameReader(), "%s" % temp.getLevel(), "%s" % temp.getSex(), "%s" % temp.getPassword()), tags=('Data',))
             self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 12))
 
         self.vsb = ttk.Scrollbar(self.content_frame, orient="vertical", command=self.heading.yview)
-        self.vsb.place(relx=0.65, rely=0.2, relheight=0.6)
+        self.vsb.place(relx=0.65, rely=0.15, relheight=0.6)
 
         self.heading.pack(side=TOP, fill=X)
 
@@ -607,24 +609,24 @@ class Reader_ManagementFrame:
             keyword = self.searchbar.get()
         else :
             self.show_data()
-            messagebox.showinfo("Empty Search Bar","Please Enter The ID Reader")
+            messagebox.showinfo("Empty Search Bar","Please Enter The Reader Name")
             return
         
         readerlist = readerTools.ReaderDataSearch(keyword)
 
         if len(readerlist) == 0 :
-            messagebox.showinfo("Cant Find the Reader","The ID Reader is not in the List")
+            messagebox.showinfo("Cant Find the Reader","The Reader Name is not in the List")
             return
         else :
             for row in readerlist:
                 row_index = readerlist.index(row) + 1
                 temp = Reader()
                 temp.setAll(row)
-                self.heading.insert("", row_index, text="%s" % temp.getIdReader, values=("%s" % temp.getNameReader(), "%s" % temp.getLevel(), "%s" % temp.getSex(), "%s" % temp.getPassword()), tags=('Data',))
+                self.heading.insert("", row_index, text="%s" % temp.getIdReader(), values=("%s" % temp.getNameReader(), "%s" % temp.getLevel(), "%s" % temp.getSex(), "%s" % temp.getPassword()), tags=('Data',))
                 self.heading.tag_configure('Data', font=("Cascadia Code SemiBold", 12))
 
         self.vsb = ttk.Scrollbar(self.content_frame, orient="vertical", command=self.heading.yview)
-        self.vsb.place(relx=0.65, rely=0.2, relheight=0.6)
+        self.vsb.place(relx=0.65, rely=0.15, relheight=0.6)
 
         self.heading.pack(side=TOP, fill=X)
 
@@ -700,6 +702,7 @@ class Reader_ManagementFrame:
         self.style.configure("Title.TLabel", foreground="snow")
         self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
         self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
+        self.style.configure("Content.TButton", font=("Cascadia Code SemiBold", 14))
         self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
         self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
 
@@ -722,8 +725,8 @@ class Reader_ManagementFrame:
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
-        self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = PIL.Image.open("src\\picture\\Nav.jpg")
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), PIL.Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
@@ -749,7 +752,7 @@ class Reader_ManagementFrame:
         self.searchButton.place(relx=0.53, rely=0.05)
 
         self.content = ttk.Frame(self.content_frame)
-        self.content.place(relx=0.05, rely=0.1, relwidth=0.6, relheight=0.65)
+        self.content.place(relx=0.05, rely=0.15, relwidth=0.6, relheight=0.6)
 
         self.updateButton = ttk.Button(self.content_frame, text="Update", style="Nav.TButton", command=self.updateReader)
         self.updateButton.place(relx=0.15, rely=0.8)
@@ -1072,7 +1075,6 @@ class Book_ManegementFrame:
         self.style.configure("Logout.TButton", font=("Cascadia Code SemiBold", 14))
         self.style.configure("Nav.TButton", font=("Cascadia Code SemiBold", 12))
         self.style.configure("Content.TButton", font=("Cascadia Code SemiBold", 14))
-        self.style.configure("Content.TButton", font=("Cascadia Code SemiBold", 14))
         self.style.configure("Content.TFrame", foreground="black", background="LightSkyBlue2")
         self.style.configure("Content.TRadiobutton", font=("Cascadia Code", 14))
         self.style.configure("Nav.TFrame", foreground="black", background="SeaGreen1")
@@ -1096,8 +1098,8 @@ class Book_ManegementFrame:
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
-        self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = PIL.Image.open("src\\picture\\Nav.jpg")
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), PIL.Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas
@@ -1294,8 +1296,8 @@ class Lending_ManagementFrame:
         self.nav_frame.place(rely=0.2, relwidth=0.3, relheight=0.8)
 
         #Resize the Image
-        self.Nav_image = Image.open("src\\picture\\Nav.jpg")
-        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), Image.ANTIALIAS)
+        self.Nav_image = PIL.Image.open("src\\picture\\Nav.jpg")
+        self.Nav_image = self.Nav_image.resize((self.x_nav, self.y_nav), PIL.Image.ANTIALIAS)
         self.Nav_image = ImageTk.PhotoImage(self.Nav_image)
 
         # (highlightthickness = 0) is for remove the border for the Canvas

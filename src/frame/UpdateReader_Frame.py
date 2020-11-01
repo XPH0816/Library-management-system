@@ -26,13 +26,13 @@ class UpdateReader_Frame:
             if i == 1 :
                 messagebox.showinfo("Sucessfully Update", "Sucessfully Update The Reader Infomation")
                 MsgBox = messagebox.askquestion('Continue','Are you sure you want to Continue', icon = 'info')
-                if MsgBox == 'yes' :
+                if MsgBox != 'yes' :
                     self.root.destroy()
                 return
             else :
                 messagebox.showinfo("Failed to Update", "Failed to Update The Reader Infomation")
                 MsgBox = messagebox.askquestion('Continue', 'Are you sure you want to Continue', icon='info')
-                if MsgBox == 'yes':
+                if MsgBox != 'yes':
                     self.root.destroy()
                 return
         else :
