@@ -2,7 +2,9 @@ from tkinter import Tk
 from tkinter import ttk
 from tkinter import *
 from tkinter import messagebox
-from PIL import ImageTk,Image
+from PIL import ImageTk
+
+import PIL
 
 from ..frame.Login_ReaderFrame import *
 from ..frame.Login_LibrarianFrame import *
@@ -106,8 +108,8 @@ class LoginFrame:
         self.style.configure("BW.TLabel", foreground="black", background="MediumPurple1")
         self.style.configure("BL.Label", foreground="black", background="MediumPurple2")
 
-        self.background_image = Image.open("src\\picture\\Mac.jpeg")
-        self.background_image = self.background_image.resize((self.x1, self.y1), Image.ANTIALIAS)
+        self.background_image = PIL.Image.open("src\\picture\\Mac.jpeg")
+        self.background_image = self.background_image.resize((self.x1, self.y1), PIL.Image.ANTIALIAS)
         self.background_image = ImageTk.PhotoImage(self.background_image)
         self.background_label = Canvas(self.root, width=self.x, height=self.y)
         self.background_label.pack()
@@ -132,13 +134,14 @@ class LoginFrame:
         self.Password = ttk.Entry(self.login_frame, font=("Cascadia Code", 10), show="*")
 
         #Setting Lock Button Image
-        self.button_image = Image.open("src\\picture\\lock.png")
-        self.button_image = self.button_image.resize((16, 16), Image.ANTIALIAS)
+        self.button_image = PIL.Image.open("src\\picture\\lock.png")
+        self.button_image = self.button_image.resize(
+            (16, 16), PIL.Image.ANTIALIAS)
         self.button_image = ImageTk.PhotoImage(self.button_image)
 
         #Setting Unlock Button Image
-        self.unlock = Image.open("src\\picture\\unlock.png")
-        self.unlock = self.unlock.resize((16, 16), Image.ANTIALIAS)
+        self.unlock = PIL.Image.open("src\\picture\\unlock.png")
+        self.unlock = self.unlock.resize((16, 16), PIL.Image.ANTIALIAS)
         self.unlock = ImageTk.PhotoImage(self.unlock)
 
         self.Show_Button = ttk.Button(self.login_frame, image=self.button_image, command=self.show_password)
