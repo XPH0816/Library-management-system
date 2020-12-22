@@ -25,7 +25,7 @@ This Project is refer to the link below :
 # How to Start the Program
 To Start the program
 
-    > .sql file is use for setup the sql server
+> .sql file is use for setup the sql server
 
 
 ## Create the Database with name "library" before use the .sql file
