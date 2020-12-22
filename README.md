@@ -27,7 +27,7 @@ Create the Database with name **"library"** before use the .sql file
 1. Change the Directory to that file
 2. Install the Requirements File
 ```console
-$ pip install -r requirements.txt
+foo@bar:~$ pip install -r requirements.txt
 ```
 3. Run the program
 ```console
