@@ -30,7 +30,7 @@ Create the Database with name **"library"** before use the .sql file
 $ pip install -r requirements.txt
 ```
 3. Run the program
-```zsh
+```bash
 $ python main.py
 or
 $ python3 main.py
