@@ -25,16 +25,11 @@ This Project is refer to the link below :
 # How to Start the Program
 To Start the program
 
+Create the Database with name "library" before use the .sql file
 > .sql file is use for setup the sql server
 
-
-## Create the Database with name "library" before use the .sql file
-
-    1.Change the Directory to that file
-    2.Install the Requirements File
-
+1.Change the Directory to that file
+2.Install the Requirements File
         $ pip install -r requirements.txt
-
-    3.Run the program
-
+3.Run the program
         $ python main.py
