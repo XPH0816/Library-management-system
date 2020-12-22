@@ -26,6 +26,10 @@ Create the Database with name **"library"** before use the .sql file
 
 1. Change the Directory to that file
 2. Install the Requirements File
+```powershell
         $ pip install -r requirements.txt
+```
 3. Run the program
+```powershell
         $ python main.py
+```
