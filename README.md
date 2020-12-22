@@ -21,15 +21,17 @@ This Project is refer to the link below :
 # How to Start the Program
 To Start the program
 
-Create the Database with name **"library"** before use the .sql file
-> __.sql__ file is use for setup the sql server
+1. Create the Database with name **"library"** on your MySQL Database Management System
 
-1. Change the Directory to that file
-2. Install the Requirements File
+2. Import the **.sql** file to your Database Server
+> __.sql__ file is use for setup the Database Server
+
+3. Change the Directory to that file
+4. Install the Requirements File
 ```bat
 $ pip install -r requirements.txt
 ```
-3. Run the program
+5. Run the program
 ```bat
 $ python main.py
 or
