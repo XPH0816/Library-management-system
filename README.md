@@ -3,7 +3,8 @@
 Developer : XPH0904
 
 # Project
-This Project is free to use and edit for library\n
+### This Project is free to use and edit for library.
+
 This Project contains the functions below :
 
 | Functions  | Category | Description  |
