@@ -39,4 +39,4 @@ or
 $ python3 main.py
 ```
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FXPH0816%2FLibrary-management-system.svg?type=large)](https://github.com/XPH0816/Library-management-system)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FXPH0816%2FLibrary-management-system.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FXPH0816%2FLibrary-management-system?ref=badge_large)
