@@ -1,4 +1,6 @@
 # Libarary Management System
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FXPH0816%2FLibrary-management-system.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FXPH0816%2FLibrary-management-system?ref=badge_shield)
+
 
 Developer : XPH0904
 
@@ -38,3 +40,7 @@ $ python main.py
 or
 $ python3 main.py
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FXPH0816%2FLibrary-management-system.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FXPH0816%2FLibrary-management-system?ref=badge_large)
